@@ -7,277 +7,282 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Auth.Api.Data.Migrations;
-
-[DbContext(typeof(DataContext))]
-partial class DataContextModelSnapshot : ModelSnapshot
+namespace Auth.Api.Data.Migrations
 {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    [DbContext(typeof(DataContext))]
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
-        modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-        modelBuilder.Entity("Auth.Api.Models.Role", b =>
-            {
-                b.Property<Guid>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Auth.Api.Models.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("Name")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("NormalizedName")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("NormalizedName")
-                    .IsUnique()
-                    .HasDatabaseName("RoleNameIndex");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
 
-                b.ToTable("AspNetRoles", (string)null);
-            });
+                    b.ToTable("AspNetRoles", (string)null);
+                });
 
-        modelBuilder.Entity("Auth.Api.Models.User", b =>
-            {
-                b.Property<Guid>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Auth.Api.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                b.Property<int>("AccessFailedCount")
-                    .HasColumnType("INTEGER");
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
 
-                b.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("TEXT");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("Email")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.Property<bool>("EmailConfirmed")
-                    .HasColumnType("INTEGER");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
 
-                b.Property<bool>("LockoutEnabled")
-                    .HasColumnType("INTEGER");
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                b.Property<DateTimeOffset?>("LockoutEnd")
-                    .HasColumnType("TEXT");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
 
-                b.Property<string>("NormalizedEmail")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("NormalizedUserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("PasswordHash")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("PhoneNumber")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
 
-                b.Property<bool>("PhoneNumberConfirmed")
-                    .HasColumnType("INTEGER");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("SecurityStamp")
-                    .HasColumnType("TEXT");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
 
-                b.Property<bool>("TwoFactorEnabled")
-                    .HasColumnType("INTEGER");
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
 
-                b.Property<DateTime>("UpdatedAt")
-                    .HasColumnType("TEXT");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
 
-                b.Property<string>("UserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("TEXT");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
-                b.HasIndex("NormalizedEmail")
-                    .HasDatabaseName("EmailIndex");
+                    b.HasKey("Id");
 
-                b.HasIndex("NormalizedUserName")
-                    .IsUnique()
-                    .HasDatabaseName("UserNameIndex");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
 
-                b.ToTable("AspNetUsers", (string)null);
-            });
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
 
-        modelBuilder.Entity("Auth.Api.Models.UserRole", b =>
-            {
-                b.Property<Guid>("UserId")
-                    .HasColumnType("TEXT");
+                    b.ToTable("AspNetUsers", (string)null);
+                });
 
-                b.Property<Guid>("RoleId")
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Auth.Api.Models.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("UserId", "RoleId");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("TEXT");
 
-                b.HasIndex("RoleId");
+                    b.HasKey("UserId", "RoleId");
 
-                b.ToTable("AspNetUserRoles", (string)null);
-            });
+                    b.HasIndex("RoleId");
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("INTEGER");
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
 
-                b.Property<string>("ClaimType")
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                b.Property<string>("ClaimValue")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
 
-                b.Property<Guid>("RoleId")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("TEXT");
 
-                b.HasIndex("RoleId");
+                    b.HasKey("Id");
 
-                b.ToTable("AspNetRoleClaims", (string)null);
-            });
+                    b.HasIndex("RoleId");
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("INTEGER");
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
 
-                b.Property<string>("ClaimType")
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                b.Property<string>("ClaimValue")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
 
-                b.Property<Guid>("UserId")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
 
-                b.HasIndex("UserId");
+                    b.HasKey("Id");
 
-                b.ToTable("AspNetUserClaims", (string)null);
-            });
+                    b.HasIndex("UserId");
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-            {
-                b.Property<string>("LoginProvider")
-                    .HasColumnType("TEXT");
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
 
-                b.Property<string>("ProviderKey")
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("ProviderDisplayName")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("TEXT");
 
-                b.Property<Guid>("UserId")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("LoginProvider", "ProviderKey");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
 
-                b.HasIndex("UserId");
+                    b.HasKey("LoginProvider", "ProviderKey");
 
-                b.ToTable("AspNetUserLogins", (string)null);
-            });
+                    b.HasIndex("UserId");
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-            {
-                b.Property<Guid>("UserId")
-                    .HasColumnType("TEXT");
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
 
-                b.Property<string>("LoginProvider")
-                    .HasColumnType("TEXT");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("Name")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
 
-                b.Property<string>("Value")
-                    .HasColumnType("TEXT");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
-                b.HasKey("UserId", "LoginProvider", "Name");
+                    b.Property<string>("Value")
+                        .HasColumnType("TEXT");
 
-                b.ToTable("AspNetUserTokens", (string)null);
-            });
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
-        modelBuilder.Entity("Auth.Api.Models.UserRole", b =>
-            {
-                b.HasOne("Auth.Api.Models.Role", "Role")
-                    .WithMany("UserRoles")
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
 
-                b.HasOne("Auth.Api.Models.User", "User")
-                    .WithMany("UserRoles")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+            modelBuilder.Entity("Auth.Api.Models.UserRole", b =>
+                {
+                    b.HasOne("Auth.Api.Models.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("Role");
+                    b.HasOne("Auth.Api.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("User");
-            });
+                    b.Navigation("Role");
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
-            {
-                b.HasOne("Auth.Api.Models.Role", null)
-                    .WithMany()
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+                    b.Navigation("User");
+                });
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
-            {
-                b.HasOne("Auth.Api.Models.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("Auth.Api.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-            {
-                b.HasOne("Auth.Api.Models.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("Auth.Api.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-            {
-                b.HasOne("Auth.Api.Models.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("Auth.Api.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("Auth.Api.Models.Role", b =>
-            {
-                b.Navigation("UserRoles");
-            });
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("Auth.Api.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("Auth.Api.Models.User", b =>
-            {
-                b.Navigation("UserRoles");
-            });
+            modelBuilder.Entity("Auth.Api.Models.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Auth.Api.Models.User", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
 #pragma warning restore 612, 618
+        }
     }
 }

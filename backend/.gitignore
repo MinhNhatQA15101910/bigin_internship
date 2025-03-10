@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+Auth.Api/auth.db
+Auth.Api/auth.db-shm
+Auth.Api/auth.db-wal
