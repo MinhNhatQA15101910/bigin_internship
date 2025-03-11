@@ -28,4 +28,26 @@ public class UsersController(
 
         return mapper.Map<UserDto>(user);
     }
+
+    [HttpPatch("change-password")]
+    [Authorize]
+    public async Task<ActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+    {
+        var userId = User.GetUserId();
+
+        var user = await userManager.FindByIdAsync(userId.ToString());
+        if (user == null) return NotFound("Could not find user");
+
+        var checkPasswordResult = await userManager.CheckPasswordAsync(user, changePasswordDto.CurrentPassword);
+        if (!checkPasswordResult) return Unauthorized("Current password is incorrect");
+
+        user.UpdatedAt = DateTime.UtcNow;
+        var changePasswordResult = await userManager.ChangePasswordAsync(
+            user, changePasswordDto.CurrentPassword, 
+            changePasswordDto.NewPassword
+        );
+        if (!changePasswordResult.Succeeded) return BadRequest(changePasswordResult.Errors);
+
+        return NoContent();
+    }
 }
