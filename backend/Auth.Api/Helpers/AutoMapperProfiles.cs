@@ -15,5 +15,6 @@ public class AutoMapperProfiles : Profile
                     src => src.UserRoles.Select(ur => ur.Role.Name).ToList()
                 )
             );
+        CreateMap<RegisterDto, User>();
     }
 }

@@ -32,6 +32,7 @@ public class AuthController(
         if (!result) return Unauthorized("Invalid password");
 
         var userDto = mapper.Map<UserDto>(existingUser);
+        userDto.Token = await tokenService.CreateTokenAsync(existingUser);
 
         return userDto;
     }
@@ -58,7 +59,7 @@ public class AuthController(
 
 
         var user = mapper.Map<User>(registerDto);
-        user.UserName = user.UserName!.ConvertToAsciiLowercase();
+        user.UserName = registerDto.FullName.ConvertToAsciiLowercase();
 
         await userManager.CreateAsync(user, registerDto.Password);
         await userManager.AddToRoleAsync(user, "User");

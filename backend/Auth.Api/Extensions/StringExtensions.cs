@@ -10,6 +10,8 @@ public static class StringExtensions
         if (string.IsNullOrWhiteSpace(input))
             return string.Empty;
 
+        input = input.Replace("Đ", "D").Replace("đ", "d");
+
         // Normalize string to decompose diacritics
         string normalizedString = input.Normalize(NormalizationForm.FormD);
         var stringBuilder = new StringBuilder();
