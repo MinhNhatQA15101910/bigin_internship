@@ -7,7 +7,7 @@ public class Product
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public Guid Id { get; set; }
+    public string Id { get; set; } = null!;
 
     [BsonElement("Name")]
     public required string ProductName { get; set; }

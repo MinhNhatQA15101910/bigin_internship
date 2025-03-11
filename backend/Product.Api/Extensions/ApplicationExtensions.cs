@@ -11,6 +11,7 @@ public static class ApplicationExtensions
         services.AddControllers();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.Configure<ProductDatabaseSettings>(configuration.GetSection(nameof(ProductDatabaseSettings)));
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;
     }
