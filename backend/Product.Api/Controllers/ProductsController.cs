@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Api.Dtos;
 using Product.Api.Interfaces;
@@ -25,6 +26,7 @@ public class ProductsController(
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<ProductDto>> AddProduct(AddProductDto addProductDto)
     {
         var product = mapper.Map<Models.Product>(addProductDto);
