@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auth.Api.Data.Migrations;
 
 [DbContext(typeof(DataContext))]
-[Migration("20250310104550_SqlInitial")]
+[Migration("20250311025520_SqlInitial")]
 partial class SqlInitial
 {
     /// <inheritdoc />
@@ -69,6 +69,10 @@ partial class SqlInitial
 
                 b.Property<bool>("EmailConfirmed")
                     .HasColumnType("INTEGER");
+
+                b.Property<string>("FullName")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
                 b.Property<bool>("LockoutEnabled")
                     .HasColumnType("INTEGER");

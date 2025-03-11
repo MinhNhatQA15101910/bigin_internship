@@ -13,6 +13,7 @@ public static class ApplicationServiceExtensions
             opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
         });
         services.AddCors();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;
     }

@@ -29,6 +29,7 @@ public partial class SqlInitial : Migration
             columns: table => new
             {
                 Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                FullName = table.Column<string>(type: "TEXT", nullable: false),
                 CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                 UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                 UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
