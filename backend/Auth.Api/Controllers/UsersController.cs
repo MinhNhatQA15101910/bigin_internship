@@ -1,5 +1,7 @@
 using Auth.Api.Dtos;
 using Auth.Api.Extensions;
+using Auth.Api.Helpers;
+using Auth.Api.Interfaces;
 using Auth.Api.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +15,8 @@ namespace Auth.Api.Controllers;
 [ApiController]
 public class UsersController(
     UserManager<User> userManager,
-    IMapper mapper
+    IMapper mapper,
+    IUserRepository userRepository
 ) : ControllerBase
 {
     [HttpGet("me")]
@@ -27,6 +30,18 @@ public class UsersController(
         if (user == null) return BadRequest("Could not find user");
 
         return mapper.Map<UserDto>(user);
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] UserParams userParams)
+    {
+        userParams.CurrentEmail = User.GetEmail();
+        var users = await userRepository.GetUsersAsync(userParams);
+
+        Response.AddPaginationHeader(users);
+
+        return Ok(users);
     }
 
     [HttpPatch("change-password")]
