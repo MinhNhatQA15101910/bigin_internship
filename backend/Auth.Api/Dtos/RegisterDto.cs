@@ -2,8 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Auth.Api.Dtos;
 
-public class LoginDto
+public class RegisterDto
 {
+    [Required]
+    public string FullName { get; set; } = string.Empty;
+
     [Required]
     [EmailAddress]
     public string Email { get; set; } = string.Empty;

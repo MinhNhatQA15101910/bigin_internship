@@ -1,4 +1,6 @@
 using Auth.Api.Dtos;
+using Auth.Api.Extensions;
+using Auth.Api.Interfaces;
 using Auth.Api.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +13,8 @@ namespace Auth.Api.Controllers;
 [ApiController]
 public class AuthController(
     UserManager<User> userManager,
-    IMapper mapper
+    IMapper mapper,
+    ITokenService tokenService
 ) : ControllerBase
 {
     [HttpPost("login")]
@@ -31,5 +34,43 @@ public class AuthController(
         var userDto = mapper.Map<UserDto>(existingUser);
 
         return userDto;
+    }
+
+    [HttpPost("signup")]
+    public async Task<ActionResult<UserDto>> ValidateSignup(RegisterDto registerDto)
+    {
+        // Check if email already exists
+        if (await UserExists(registerDto.Email))
+        {
+            return BadRequest("Email already exists.");
+        }
+
+        // Check if password is valid
+        var result = await userManager.PasswordValidators.First().ValidateAsync(
+            userManager,
+            null!,
+            registerDto.Password
+        );
+        if (!result.Succeeded)
+        {
+            return BadRequest(result.Errors);
+        }
+
+
+        var user = mapper.Map<User>(registerDto);
+        user.UserName = user.UserName!.ConvertToAsciiLowercase();
+
+        await userManager.CreateAsync(user, registerDto.Password);
+        await userManager.AddToRoleAsync(user, "User");
+
+        var userDto = mapper.Map<UserDto>(user);
+
+        userDto.Token = await tokenService.CreateTokenAsync(user);
+        return Ok(userDto);
+    }
+
+    private async Task<bool> UserExists(string email)
+    {
+        return await userManager.Users.AnyAsync(x => x.NormalizedEmail == email.ToUpper());
     }
 }
