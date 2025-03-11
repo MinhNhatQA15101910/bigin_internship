@@ -487,3 +487,5 @@ Auth.Api/auth.db
 Auth.Api/auth.db-shm
 Auth.Api/auth.db-wal
 Auth.Api/appsettings.json
+
+Product.Api/appsettings.json
