@@ -16,14 +16,23 @@ public class ProductRepository : IProductRepository
         _productsCollection = mongoDatabase.GetCollection<Models.Product>(productDatabaseSettings.Value.ProductsCollectionName);
     }
 
-    public async Task AddProductAsync(Models.Product product)
+    public async Task AddProductAsync(Models.Product product, CancellationToken cancellationToken)
     {
-        await _productsCollection.InsertOneAsync(product);
+        await _productsCollection.InsertOneAsync(product, cancellationToken: cancellationToken);
     }
 
     public async Task<Models.Product> GetProductByIdAsync(string id)
     {
-        return await _productsCollection.Find(product => product.Id.ToString() == id).FirstOrDefaultAsync();
+        return await _productsCollection
+            .Find(product => product.Id.ToString() == id)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<Models.Product?> GetProductByNameAsync(string name)
+    {
+        return await _productsCollection
+            .Find(product => product.ProductName == name)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<List<Models.Product>> GetProductsAsync()

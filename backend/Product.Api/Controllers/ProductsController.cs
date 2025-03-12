@@ -1,41 +1,44 @@
-using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Api.Dtos;
-using Product.Api.Interfaces;
+using Product.Api.Features.Commands;
+using Product.Api.Features.Queries;
 
 namespace Product.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ProductsController(
-    IProductRepository productRepository,
-    IMapper mapper
-) : ControllerBase
+public class ProductsController(IMediator mediator) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<ActionResult<ProductDto>> GetProduct(string id)
     {
-        var product = await productRepository.GetProductByIdAsync(id);
-        if (product == null)
-        {
-            return NotFound();
-        }
+        var result = await mediator.Send(new GetProductByIdQuery(id));
 
-        return Ok(mapper.Map<ProductDto>(product));
+        return result.StatusCode switch
+        {
+            200 => Ok(result.Data),
+            404 => NotFound(result.Errors),
+            _ => Problem(result.Errors.First())
+        };
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<ProductDto>> AddProduct(AddProductDto addProductDto)
+    // [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<ProductDto>> AddProduct(AddProductCommand addProductCommand)
     {
-        var product = mapper.Map<Models.Product>(addProductDto);
-        await productRepository.AddProductAsync(product);
+        var result = await mediator.Send(addProductCommand);
 
-        return CreatedAtAction(
-            nameof(GetProduct),
-            new { id = product.Id },
-            mapper.Map<ProductDto>(product)
-        );
+        return result.StatusCode switch
+        {
+            200 => CreatedAtAction(
+                nameof(GetProduct),
+                new { id = result.Data!.Id },
+                result.Data
+            ),
+            400 => BadRequest(result.Errors),
+            _ => Problem(result.Errors.First())
+        };
     }
 }
