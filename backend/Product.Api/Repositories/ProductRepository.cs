@@ -21,8 +21,13 @@ public class ProductRepository : IProductRepository
         await _productsCollection.InsertOneAsync(product);
     }
 
-    public Task<Models.Product> GetProductByIdAsync(string id)
+    public async Task<Models.Product> GetProductByIdAsync(string id)
     {
-        return _productsCollection.Find(product => product.Id.ToString() == id).FirstOrDefaultAsync();
+        return await _productsCollection.Find(product => product.Id.ToString() == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<List<Models.Product>> GetProductsAsync()
+    {
+        return await _productsCollection.Find(_ => true).ToListAsync();
     }
 }
