@@ -1,6 +1,7 @@
 using Product.Api.Data;
 using Product.Api.Extensions;
 using Product.Api.Interfaces;
+using Product.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

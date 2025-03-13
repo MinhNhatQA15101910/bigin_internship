@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Product.Api.Dtos;
 using Product.Api.Features.Commands;
@@ -14,31 +13,21 @@ public class ProductsController(IMediator mediator) : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<ProductDto>> GetProduct(string id)
     {
-        var result = await mediator.Send(new GetProductByIdQuery(id));
+        var productDto = await mediator.Send(new GetProductByIdQuery(id));
 
-        return result.StatusCode switch
-        {
-            200 => Ok(result.Data),
-            404 => NotFound(result.Errors),
-            _ => Problem(result.Errors.First())
-        };
+        return productDto;
     }
 
     [HttpPost]
     // [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<ProductDto>> AddProduct(AddProductCommand addProductCommand)
+    public async Task<ActionResult<ProductDto>> AddProduct(AddUpdateProductDto addUpdateProductDto)
     {
-        var result = await mediator.Send(addProductCommand);
+        var product = await mediator.Send(new AddProductCommand(addUpdateProductDto));
 
-        return result.StatusCode switch
-        {
-            200 => CreatedAtAction(
-                nameof(GetProduct),
-                new { id = result.Data!.Id },
-                result.Data
-            ),
-            400 => BadRequest(result.Errors),
-            _ => Problem(result.Errors.First())
-        };
+        return CreatedAtAction(
+            nameof(GetProduct),
+            new { id = product.Id },
+            product
+        );
     }
 }
