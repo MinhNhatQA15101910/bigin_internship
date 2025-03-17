@@ -13,13 +13,13 @@ public class AddProductCommandHandler(
 {
     public async Task<ProductDto> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
-        var existingProduct = await productRepository.GetProductByNameAsync(request.AddUpdateProductDto.ProductName);
+        var existingProduct = await productRepository.GetProductByNameAsync(request.ProductName);
         if (existingProduct != null)
         {
             throw new BadRequestException("Product with this name already exists");
         }
 
-        var product = mapper.Map<Models.Product>(request.AddUpdateProductDto);
+        var product = mapper.Map<Models.Product>(request);
 
         await productRepository.AddProductAsync(product, cancellationToken);
 

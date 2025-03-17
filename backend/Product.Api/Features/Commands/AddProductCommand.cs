@@ -3,5 +3,8 @@ using Product.Api.Dtos;
 namespace Product.Api.Features.Commands;
 
 public record AddProductCommand(
-    AddUpdateProductDto AddUpdateProductDto
+    string ProductName,
+    string Description,
+    decimal Price,
+    int StockQuantity
 ) : ICommand<ProductDto>;

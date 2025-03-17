@@ -7,7 +7,7 @@ public class Seed
 {
     public static async Task SeedProductsAsync(IProductRepository productRepository)
     {
-        var productDocuments = await productRepository.GetProductsAsync();
+        var productDocuments = await productRepository.GetAllProductsAsync();
         if (productDocuments.Count != 0) return;
 
         var productData = await File.ReadAllTextAsync("Data/ProductSeedData.json");

@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Product.Api.Dtos;
+using Product.Api.Extensions;
 using Product.Api.Features.Commands;
 using Product.Api.Features.Queries;
 
@@ -20,14 +21,24 @@ public class ProductsController(IMediator mediator) : ControllerBase
 
     [HttpPost]
     // [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<ProductDto>> AddProduct(AddUpdateProductDto addUpdateProductDto)
+    public async Task<ActionResult<ProductDto>> AddProduct(AddProductCommand addProductCommand)
     {
-        var product = await mediator.Send(new AddProductCommand(addUpdateProductDto));
+        var product = await mediator.Send(addProductCommand);
 
         return CreatedAtAction(
             nameof(GetProduct),
             new { id = product.Id },
             product
         );
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts([FromQuery] GetProductsQuery getProductsQuery)
+    {
+        var products = await mediator.Send(getProductsQuery);
+
+        Response.AddPaginationHeader(products);
+
+        return Ok(products);
     }
 }

@@ -1,7 +1,6 @@
 using FluentValidation;
 using MediatR;
 using Product.Api.Features.Behaviors;
-using Product.Api.Features.Commands;
 using Product.Api.Helpers;
 using Product.Api.Interfaces;
 using Product.Api.Middlewares;
