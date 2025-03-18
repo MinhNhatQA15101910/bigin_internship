@@ -1,10 +1,11 @@
+using Application.Commands.Products;
 using AutoMapper;
-using Product.Api.Dtos;
-using Product.Api.Exceptions;
-using Product.Api.Features.Commands;
-using Product.Api.Interfaces;
+using Domain.Entities;
+using Domain.Exceptions;
+using Domain.Repositories;
+using SharedKernel.DTOs;
 
-namespace Product.Api.Features.Handlers.CommandHandlers;
+namespace Application.Handlers.CommandHandlers.Products;
 
 public class AddProductCommandHandler(
     IProductRepository productRepository,
@@ -19,7 +20,7 @@ public class AddProductCommandHandler(
             throw new BadRequestException("Product with this name already exists");
         }
 
-        var product = mapper.Map<Models.Product>(request);
+        var product = mapper.Map<Product>(request.AddProductDto);
 
         await productRepository.AddProductAsync(product, cancellationToken);
 

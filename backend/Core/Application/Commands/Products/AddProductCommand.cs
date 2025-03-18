@@ -1,6 +1,7 @@
-using Product.Api.Dtos;
+using Application.DTOs.Products;
+using SharedKernel.DTOs;
 
-namespace Product.Api.Features.Commands;
+namespace Application.Commands.Products;
 
 public record AddProductCommand(
     AddUpdateProductDto AddProductDto
