@@ -1,7 +1,7 @@
 using Application.Queries.Products;
 using AutoMapper;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
 using SharedKernel.DTOs;
 
 namespace Application.Handlers.QueryHandlers.Products;

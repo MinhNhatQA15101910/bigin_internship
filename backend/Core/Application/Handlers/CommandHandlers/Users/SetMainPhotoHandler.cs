@@ -1,6 +1,6 @@
 using Application.Commands.Users;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 
 namespace Application.Handlers.CommandHandlers.Users;
 

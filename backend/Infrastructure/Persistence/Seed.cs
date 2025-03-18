@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Domain.Entities;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

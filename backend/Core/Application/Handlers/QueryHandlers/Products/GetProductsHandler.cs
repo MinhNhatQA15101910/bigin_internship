@@ -1,6 +1,6 @@
 using Application.Queries.Products;
 using AutoMapper;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
 using SharedKernel;
 using SharedKernel.DTOs;
 

@@ -1,7 +1,7 @@
 using Application.Queries.Users;
 using AutoMapper;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 using SharedKernel.DTOs;
 
 namespace Application.Handlers.QueryHandlers.Users;

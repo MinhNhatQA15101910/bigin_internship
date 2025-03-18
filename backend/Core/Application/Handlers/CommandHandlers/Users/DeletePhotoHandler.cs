@@ -2,7 +2,7 @@ using Application.Commands.Users;
 using Application.Interfaces;
 using CloudinaryDotNet.Actions;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 
 namespace Application.Handlers.CommandHandlers.Users;
 

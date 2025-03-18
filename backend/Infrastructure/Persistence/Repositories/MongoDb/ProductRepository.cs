@@ -1,6 +1,6 @@
 using Configuration;
 using Domain.Entities;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -13,16 +13,15 @@ public class ProductRepository : IProductRepository
 {
     private readonly IMongoCollection<Product> _productsCollection;
 
-    public ProductRepository(IOptions<MongoDbSettings> mongoDbSettings)
+    public ProductRepository(IOptions<MongoDbSettings> mongoDbSettings, IMongoClient mongoClient)
     {
-        var mongoClient = new MongoClient(mongoDbSettings.Value.ConnectionString);
         var mongoDatabase = mongoClient.GetDatabase(mongoDbSettings.Value.DatabaseName);
         _productsCollection = mongoDatabase.GetCollection<Product>(mongoDbSettings.Value.ProductsCollectionName);
     }
 
-    public async Task AddProductAsync(Product product, CancellationToken cancellationToken)
+    public async Task AddProductAsync(Product product, IClientSessionHandle? session = null, CancellationToken cancellationToken = default)
     {
-        await _productsCollection.InsertOneAsync(product, cancellationToken: cancellationToken);
+        await _productsCollection.InsertOneAsync(session, product, cancellationToken: cancellationToken);
     }
 
     public async Task<List<Product>> GetAllProductsAsync()

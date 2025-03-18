@@ -1,7 +1,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
 using SharedKernel.DTOs;

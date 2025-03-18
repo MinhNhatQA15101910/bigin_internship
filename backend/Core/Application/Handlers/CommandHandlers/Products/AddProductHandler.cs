@@ -2,13 +2,14 @@ using Application.Commands.Products;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
 using SharedKernel.DTOs;
 
 namespace Application.Handlers.CommandHandlers.Products;
 
 public class AddProductCommandHandler(
     IProductRepository productRepository,
+    MongoDbTransactionManager transactionManager,
     IMapper mapper
 ) : ICommandHandler<AddProductCommand, ProductDto>
 {
@@ -22,7 +23,10 @@ public class AddProductCommandHandler(
 
         var product = mapper.Map<Product>(request.AddProductDto);
 
-        await productRepository.AddProductAsync(product, cancellationToken);
+        await transactionManager.ExecuteTransactionAsync(async session =>
+        {
+            await productRepository.AddProductAsync(product, session, cancellationToken);
+        });
 
         return mapper.Map<ProductDto>(product);
     }

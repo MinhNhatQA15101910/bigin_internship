@@ -3,7 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Exceptions;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 using SharedKernel.DTOs;
 
 namespace Application.Handlers.CommandHandlers.Users;

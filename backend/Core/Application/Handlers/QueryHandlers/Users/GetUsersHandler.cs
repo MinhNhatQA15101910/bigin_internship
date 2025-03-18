@@ -1,5 +1,5 @@
 using Application.Queries.Users;
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 using MediatR;
 using SharedKernel;
 using SharedKernel.DTOs;

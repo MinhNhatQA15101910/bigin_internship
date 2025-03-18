@@ -1,4 +1,4 @@
-using Domain.Repositories;
+using Domain.Repositories.Sqlite;
 
 namespace Persistence.Repositories.Sqlite;
 

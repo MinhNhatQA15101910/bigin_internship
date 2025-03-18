@@ -2,10 +2,13 @@ using Application.Behaviors;
 using Application.Interfaces;
 using Application.Services;
 using Configuration;
-using Domain.Repositories;
+using Domain.Repositories.MongoDb;
+using Domain.Repositories.Sqlite;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Persistence;
 using Persistence.Repositories.MongoDb;
 using Persistence.Repositories.Sqlite;
@@ -20,6 +23,11 @@ public static class ApplicationServiceExtensions
     {
         services.AddControllers();
 
+        // Options pattern
+        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        services.Configure<EmailSenderSettings>(config.GetSection("EmailSenderSettings"));
+        services.Configure<MongoDbSettings>(config.GetSection("MongoDbSettings"));
+
         // Database and repositories
         services.AddDbContext<DataContext>(options =>
         {
@@ -32,16 +40,24 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        services.AddSingleton<IMongoClient>(sp =>
+        {
+            var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+            return new MongoClient(settings.ConnectionString);
+        });
+
+        services.AddSingleton(sp =>
+        {
+            var mongoClient = sp.GetRequiredService<IMongoClient>();
+            var settings = sp.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value;
+            return new MongoDbTransactionManager(mongoClient);
+        });
+
         // Services
         services.AddSingleton<PincodeStore>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IFileService, FileService>();
-
-        // Options pattern
-        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
-        services.Configure<EmailSenderSettings>(config.GetSection("EmailSenderSettings"));
-        services.Configure<MongoDbSettings>(config.GetSection("MongoDbSettings"));
 
         // Middleware
         services.AddScoped<ExceptionHandlingMiddleware>();
@@ -57,4 +73,8 @@ public static class ApplicationServiceExtensions
 
         return services;
     }
+}
+
+internal class ProductDatabaseSettings
+{
 }

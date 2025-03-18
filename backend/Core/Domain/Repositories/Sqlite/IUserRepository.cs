@@ -3,7 +3,7 @@ using SharedKernel;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 
-namespace Domain.Repositories;
+namespace Domain.Repositories.Sqlite;
 
 public interface IUserRepository
 {

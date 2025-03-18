@@ -1,4 +1,4 @@
-namespace Domain.Repositories;
+namespace Domain.Repositories.Sqlite;
 
 public interface IUnitOfWork
 {
