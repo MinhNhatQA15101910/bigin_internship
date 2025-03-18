@@ -24,5 +24,7 @@ public class AutoMapperProfiles : Profile
                 )
             );
         CreateMap<ValidateSignupDto, User>();
+
+        CreateMap<Product, ProductDto>();
     }
 }

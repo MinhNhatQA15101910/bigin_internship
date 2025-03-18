@@ -7,7 +7,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Persistence.Repositories;
+using Persistence.Repositories.MongoDb;
+using Persistence.Repositories.Sqlite;
 using Presentation.Middlewares;
 using Services;
 
@@ -28,6 +29,7 @@ public static class ApplicationServiceExtensions
             );
         });
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Services
@@ -39,6 +41,7 @@ public static class ApplicationServiceExtensions
         // Options pattern
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         services.Configure<EmailSenderSettings>(config.GetSection("EmailSenderSettings"));
+        services.Configure<MongoDbSettings>(config.GetSection("MongoDbSettings"));
 
         // Middleware
         services.AddScoped<ExceptionHandlingMiddleware>();

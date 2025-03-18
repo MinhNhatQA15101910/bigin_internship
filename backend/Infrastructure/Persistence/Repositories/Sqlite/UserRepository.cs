@@ -7,7 +7,7 @@ using SharedKernel;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 
-namespace Persistence.Repositories;
+namespace Persistence.Repositories.Sqlite;
 
 public class UserRepository(DataContext context, IMapper mapper) : IUserRepository
 {

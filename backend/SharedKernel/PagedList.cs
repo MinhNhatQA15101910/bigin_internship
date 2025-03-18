@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 namespace SharedKernel;
 
@@ -27,5 +29,27 @@ public class PagedList<T> : List<T>
         var count = await source.CountAsync();
         var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
         return new PagedList<T>(items, count, pageNumber, pageSize);
+    }
+
+    public static async Task<PagedList<T>> CreateAsync(
+        IFindFluent<T, T> source,
+        int pageNumber,
+        int pageSize
+    )
+    {
+        var count = await source.CountDocumentsAsync();
+        var items = await source.Skip((pageNumber - 1) * pageSize).Limit(pageSize).ToListAsync();
+        return new PagedList<T>(items, (int)count, pageNumber, pageSize);
+    }
+
+    public static PagedList<T> Map<TSource>(PagedList<TSource> source, IMapper mapper)
+        where TSource : class
+    {
+        return new PagedList<T>(
+            source.Select(mapper.Map<T>),
+            source.TotalCount,
+            source.CurrentPage,
+            source.PageSize
+        );
     }
 }
