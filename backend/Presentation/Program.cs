@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -23,9 +24,11 @@ try
     var context = services.GetRequiredService<DataContext>();
     var userManager = services.GetRequiredService<UserManager<User>>();
     var roleManager = services.GetRequiredService<RoleManager<Role>>();
+    var productRepository = services.GetRequiredService<IProductRepository>();
 
     await context.Database.MigrateAsync();
     await Seed.SeedUsersAsync(userManager, roleManager);
+    await Seed.SeedProductsAsync(productRepository);
 }
 catch (Exception ex)
 {
