@@ -1,7 +1,7 @@
-using Application.Queries;
+using AuthService.Core.Application.Queries;
 using MediatR;
 
-namespace Application.Handlers.QueryHandlers;
+namespace AuthService.Core.Application.Handlers.QueryHandlers;
 
 public interface IQueryHandler<in TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
     where TQuery : IQuery<TResponse>

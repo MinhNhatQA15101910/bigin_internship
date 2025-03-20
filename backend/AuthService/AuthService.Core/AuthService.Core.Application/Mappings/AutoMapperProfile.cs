@@ -1,10 +1,9 @@
-using Application.DTOs.Auth;
-using Application.DTOs.Products;
+using AuthService.Core.Application.DTOs;
+using AuthService.Core.Domain.Entities;
 using AutoMapper;
-using Domain.Entities;
 using SharedKernel.DTOs;
 
-namespace Application.Mappings;
+namespace AuthService.Core.Application.Mappings;
 
 public class AutoMapperProfiles : Profile
 {
@@ -25,8 +24,5 @@ public class AutoMapperProfiles : Profile
                 )
             );
         CreateMap<ValidateSignupDto, User>();
-
-        CreateMap<Product, ProductDto>();
-        CreateMap<AddUpdateProductDto, Product>();
     }
 }

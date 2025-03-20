@@ -1,6 +1,6 @@
-using Application.DTOs.Auth;
+using AuthService.Core.Application.DTOs;
 
-namespace Application.Services;
+namespace AuthService.Core.Application.Services;
 
 public class PincodeStore
 {

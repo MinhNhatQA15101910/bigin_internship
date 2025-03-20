@@ -1,6 +1,6 @@
-using Domain.Entities;
+using AuthService.Core.Domain.Entities;
 
-namespace Application.Interfaces;
+namespace AuthService.Core.Application.Interfaces;
 
 public interface ITokenService
 {

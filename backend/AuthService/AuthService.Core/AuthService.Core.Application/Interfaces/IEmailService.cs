@@ -1,4 +1,4 @@
-namespace Application.Interfaces;
+namespace AuthService.Core.Application.Interfaces;
 
 public interface IEmailService
 {

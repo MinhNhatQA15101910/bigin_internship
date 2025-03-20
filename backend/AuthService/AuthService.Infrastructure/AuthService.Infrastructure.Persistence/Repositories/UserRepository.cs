@@ -50,4 +50,9 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             userParams.PageSize
         );
     }
+
+    public async Task<bool> SaveChangesAsync()
+    {
+        return await context.SaveChangesAsync() > 0;
+    }
 }

@@ -1,6 +1,7 @@
-using Application.Behaviors;
-using Application.Interfaces;
-using Application.Services;
+using AuthService.Core.Application;
+using AuthService.Core.Application.Behaviors;
+using AuthService.Core.Application.Interfaces;
+using AuthService.Core.Application.Services;
 using AuthService.Infrastructure.Configuration;
 using Domain.Repositories.MongoDb;
 using Domain.Repositories.Sqlite;
@@ -59,7 +60,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ExceptionHandlingMiddleware>();
 
         // MediatR
-        var applicationAssembly = typeof(Application.AssemblyReference).Assembly;
+        var applicationAssembly = typeof(AssemblyReference).Assembly;
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddValidatorsFromAssembly(applicationAssembly);

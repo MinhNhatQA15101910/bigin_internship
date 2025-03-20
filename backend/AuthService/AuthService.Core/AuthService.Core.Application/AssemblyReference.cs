@@ -1,3 +1,3 @@
-namespace Application;
+namespace AuthService.Core.Application;
 
 public sealed record AssemblyReference;

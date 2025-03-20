@@ -1,7 +1,7 @@
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Interfaces;
+namespace AuthService.Core.Application.Interfaces;
 
 public interface IFileService
 {
