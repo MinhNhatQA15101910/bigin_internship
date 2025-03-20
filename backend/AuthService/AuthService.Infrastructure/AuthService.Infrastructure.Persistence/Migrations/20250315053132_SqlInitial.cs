@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Persistence.Migrations;
+namespace AuthService.Infrastructure.Persistence.Migrations;
 
 /// <inheritdoc />
 public partial class SqlInitial : Migration

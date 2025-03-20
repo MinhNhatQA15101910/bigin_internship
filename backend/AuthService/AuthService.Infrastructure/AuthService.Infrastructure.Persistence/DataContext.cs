@@ -1,9 +1,9 @@
-using Domain.Entities;
+using AuthService.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence;
+namespace AuthService.Infrastructure.Persistence;
 
 public class DataContext(DbContextOptions options) :
     IdentityDbContext<

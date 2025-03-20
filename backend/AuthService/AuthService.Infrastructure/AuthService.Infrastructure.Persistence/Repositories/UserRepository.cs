@@ -1,13 +1,13 @@
+using AuthService.Core.Domain.Entities;
+using AuthService.Core.Domain.Repositories;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Entities;
-using Domain.Repositories.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 
-namespace Persistence.Repositories.Sqlite;
+namespace AuthService.Infrastructure.Persistence.Repositories;
 
 public class UserRepository(DataContext context, IMapper mapper) : IUserRepository
 {
