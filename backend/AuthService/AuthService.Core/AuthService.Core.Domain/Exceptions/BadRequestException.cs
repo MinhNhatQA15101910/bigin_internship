@@ -1,4 +1,4 @@
-namespace Domain.Exceptions;
+namespace AuthService.Core.Domain.Exceptions;
 
 public class BadRequestException(string message) : ApplicationException("Bad Request", message)
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Domain.Entities;
+namespace AuthService.Core.Domain.Entities;
 
 public class UserRole : IdentityUserRole<Guid>
 {

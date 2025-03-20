@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Domain.Enums;
+using AuthService.Core.Domain.Enums;
 
 namespace Presentation.Extensions;
 
@@ -7,7 +7,7 @@ public static class ClaimPrincipalExtensions
 {
     public static Guid GetUserId(this ClaimsPrincipal user)
     {
-        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier) 
+        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? throw new Exception("Cannot get user id from token");
 
         return Guid.Parse(userId);

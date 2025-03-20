@@ -1,6 +1,6 @@
 using Application.Commands.Auth;
 using Application.DTOs.Auth;
-using Domain.Enums;
+using AuthService.Core.Domain.Enums;
 using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.Extensions;
 using SharedKernel.DTOs;
 
-namespace Presentation.Controllers;
+namespace AuthService.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

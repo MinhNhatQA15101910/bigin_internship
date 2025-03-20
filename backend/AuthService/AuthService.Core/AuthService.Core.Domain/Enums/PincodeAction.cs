@@ -1,4 +1,4 @@
-namespace Domain.Enums;
+namespace AuthService.Core.Domain.Enums;
 
 public enum PincodeAction
 {

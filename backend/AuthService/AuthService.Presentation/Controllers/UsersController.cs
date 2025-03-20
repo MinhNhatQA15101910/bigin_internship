@@ -8,7 +8,7 @@ using Presentation.Extensions;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 
-namespace Presentation.Controllers;
+namespace AuthService.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

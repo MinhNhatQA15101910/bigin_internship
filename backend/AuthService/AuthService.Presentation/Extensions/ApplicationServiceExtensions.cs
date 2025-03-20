@@ -9,13 +9,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Persistence;
-using Persistence.Repositories.MongoDb;
-using Persistence.Repositories.Sqlite;
 using Presentation.Middlewares;
-using Services;
 
-namespace Presentation.Extensions;
+namespace AuthService.Presentation.Extensions;
 
 public static class ApplicationServiceExtensions
 {

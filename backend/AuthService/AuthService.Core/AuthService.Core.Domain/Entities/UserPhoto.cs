@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entities;
+namespace AuthService.Core.Domain.Entities;
 
 [Table("UserPhotos")]
 public class UserPhoto

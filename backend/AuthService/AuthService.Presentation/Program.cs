@@ -1,4 +1,5 @@
-using Domain.Entities;
+using AuthService.Core.Domain.Entities;
+using AuthService.Presentation.Extensions;
 using Domain.Repositories.MongoDb;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

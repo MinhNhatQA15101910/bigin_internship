@@ -1,9 +1,9 @@
-using Domain.Entities;
+using AuthService.Core.Domain.Entities;
 using SharedKernel;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 
-namespace Domain.Repositories.Sqlite;
+namespace AuthService.Core.Domain.Repositories;
 
 public interface IUserRepository
 {
