@@ -1,7 +1,7 @@
 using Application.Behaviors;
 using Application.Interfaces;
 using Application.Services;
-using Configuration;
+using AuthService.Infrastructure.Configuration;
 using Domain.Repositories.MongoDb;
 using Domain.Repositories.Sqlite;
 using FluentValidation;

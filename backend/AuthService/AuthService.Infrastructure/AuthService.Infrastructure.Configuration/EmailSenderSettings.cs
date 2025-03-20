@@ -1,4 +1,4 @@
-namespace Configuration;
+namespace AuthService.Infrastructure.Configuration;
 
 public class EmailSenderSettings
 {
