@@ -3,9 +3,9 @@ using AuthService.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Persistence;
+using AuthService.Infrastructure.Persistence;
 
-namespace Presentation.Extensions;
+namespace AuthService.Presentation.Extensions;
 
 public static class IdentityServiceExtensions
 {

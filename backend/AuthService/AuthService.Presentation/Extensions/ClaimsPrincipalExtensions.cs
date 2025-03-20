@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using AuthService.Core.Domain.Enums;
 
-namespace Presentation.Extensions;
+namespace AuthService.Presentation.Extensions;
 
 public static class ClaimPrincipalExtensions
 {

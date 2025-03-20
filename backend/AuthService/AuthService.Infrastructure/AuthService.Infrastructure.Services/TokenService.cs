@@ -1,13 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Application.Interfaces;
-using Domain.Entities;
+using AuthService.Core.Application.Interfaces;
+using AuthService.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Services;
+namespace AuthService.Infrastructure.Services;
 
 public class TokenService(
     IConfiguration config,

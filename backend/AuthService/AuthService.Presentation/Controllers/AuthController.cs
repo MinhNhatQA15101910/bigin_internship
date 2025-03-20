@@ -1,11 +1,11 @@
-using Application.Commands.Auth;
-using Application.DTOs.Auth;
+using AuthService.Core.Application.Commands;
+using AuthService.Core.Application.DTOs;
 using AuthService.Core.Domain.Enums;
-using Domain.Exceptions;
+using AuthService.Core.Domain.Exceptions;
+using AuthService.Presentation.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Extensions;
 using SharedKernel.DTOs;
 
 namespace AuthService.Presentation.Controllers;

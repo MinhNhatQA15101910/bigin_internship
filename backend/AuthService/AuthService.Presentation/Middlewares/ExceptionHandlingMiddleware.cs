@@ -1,7 +1,7 @@
 using System.Text.Json;
 using AuthService.Core.Domain.Exceptions;
 
-namespace Presentation.Middlewares;
+namespace AuthService.Presentation.Middlewares;
 
 public class ExceptionHandlingMiddleware(
     ILogger<ExceptionHandlingMiddleware> logger
@@ -52,7 +52,7 @@ public class ExceptionHandlingMiddleware(
     private static string GetTitle(Exception exception)
         => exception switch
         {
-            AuthService.Core.Domain.Exceptions.ApplicationException applicationException => applicationException.Title,
+            Core.Domain.Exceptions.ApplicationException applicationException => applicationException.Title,
             _ => "Server Error"
         };
 

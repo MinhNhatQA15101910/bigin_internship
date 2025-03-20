@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Presentation.Models;
+using AuthService.Presentation.Models;
 using SharedKernel;
 
-namespace Presentation.Extensions;
+namespace AuthService.Presentation.Extensions;
 
 public static class HttpExtensions
 {

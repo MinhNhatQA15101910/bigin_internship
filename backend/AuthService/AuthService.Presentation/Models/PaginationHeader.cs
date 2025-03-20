@@ -1,4 +1,4 @@
-namespace Presentation.Models;
+namespace AuthService.Presentation.Models;
 
 public class PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalPages)
 {

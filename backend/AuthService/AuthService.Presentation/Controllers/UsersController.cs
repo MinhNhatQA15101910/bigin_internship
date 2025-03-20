@@ -1,10 +1,10 @@
-using Application.Commands.Users;
-using Application.DTOs.Users;
-using Application.Queries.Users;
+using AuthService.Core.Application.Commands;
+using AuthService.Core.Application.DTOs;
+using AuthService.Core.Application.Queries;
+using AuthService.Presentation.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Extensions;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
 

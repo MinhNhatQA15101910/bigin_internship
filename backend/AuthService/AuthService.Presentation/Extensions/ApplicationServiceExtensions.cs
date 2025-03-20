@@ -2,15 +2,15 @@ using AuthService.Core.Application;
 using AuthService.Core.Application.Behaviors;
 using AuthService.Core.Application.Interfaces;
 using AuthService.Core.Application.Services;
+using AuthService.Core.Domain.Repositories;
 using AuthService.Infrastructure.Configuration;
-using Domain.Repositories.MongoDb;
-using Domain.Repositories.Sqlite;
+using AuthService.Infrastructure.Persistence;
+using AuthService.Infrastructure.Persistence.Repositories;
+using AuthService.Infrastructure.Services;
+using AuthService.Presentation.Middlewares;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using Presentation.Middlewares;
 
 namespace AuthService.Presentation.Extensions;
 
@@ -34,21 +34,6 @@ public static class ApplicationServiceExtensions
             );
         });
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        services.AddSingleton<IMongoClient>(sp =>
-        {
-            var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-            return new MongoClient(settings.ConnectionString);
-        });
-
-        services.AddSingleton(sp =>
-        {
-            var mongoClient = sp.GetRequiredService<IMongoClient>();
-            var settings = sp.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value;
-            return new MongoDbTransactionManager(mongoClient);
-        });
 
         // Services
         services.AddSingleton<PincodeStore>();
@@ -70,8 +55,4 @@ public static class ApplicationServiceExtensions
 
         return services;
     }
-}
-
-internal class ProductDatabaseSettings
-{
 }

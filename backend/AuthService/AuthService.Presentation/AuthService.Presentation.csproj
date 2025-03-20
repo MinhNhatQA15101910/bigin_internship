@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
     <ProjectReference Include="..\AuthService.Core\AuthService.Core.Application\AuthService.Core.Application.csproj" />
-    <ProjectReference Include="..\AuthService.Core\AuthService.Core.Domain\AuthService.Core.Domain.csproj" />
     <ProjectReference Include="..\AuthService.Infrastructure\AuthService.Infrastructure.Configuration\AuthService.Infrastructure.Configuration.csproj" />
+    <ProjectReference Include="..\AuthService.Infrastructure\AuthService.Infrastructure.Persistence\AuthService.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\AuthService.Infrastructure\AuthService.Infrastructure.Services\AuthService.Infrastructure.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
-using Application.Interfaces;
+using AuthService.Core.Application.Interfaces;
+using AuthService.Infrastructure.Configuration;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace Services;
+namespace AuthService.Infrastructure.Services;
 
 public class FileService : IFileService
 {

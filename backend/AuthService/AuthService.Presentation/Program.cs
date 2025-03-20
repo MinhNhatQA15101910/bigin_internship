@@ -1,11 +1,9 @@
 using AuthService.Core.Domain.Entities;
+using AuthService.Infrastructure.Persistence;
 using AuthService.Presentation.Extensions;
-using Domain.Repositories.MongoDb;
+using AuthService.Presentation.Middlewares;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Persistence;
-using Presentation.Extensions;
-using Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +23,9 @@ try
     var context = services.GetRequiredService<DataContext>();
     var userManager = services.GetRequiredService<UserManager<User>>();
     var roleManager = services.GetRequiredService<RoleManager<Role>>();
-    var productRepository = services.GetRequiredService<IProductRepository>();
 
     await context.Database.MigrateAsync();
     await Seed.SeedUsersAsync(userManager, roleManager);
-    await Seed.SeedProductsAsync(productRepository);
 }
 catch (Exception ex)
 {

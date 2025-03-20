@@ -1,11 +1,11 @@
-using Application.Interfaces;
-using Configuration;
+using AuthService.Core.Application.Interfaces;
+using AuthService.Infrastructure.Configuration;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace Services;
+namespace AuthService.Infrastructure.Services;
 
 public class EmailService(IOptions<EmailSenderSettings> config) : IEmailService
 {
