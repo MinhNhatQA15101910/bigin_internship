@@ -1,4 +1,4 @@
-namespace AuthService.Core.Domain.Exceptions;
+namespace SharedKernel.Exceptions;
 
 public abstract class ApplicationException(string title, string message) : Exception(message)
 {

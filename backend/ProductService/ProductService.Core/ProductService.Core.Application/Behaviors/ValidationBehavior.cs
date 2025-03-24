@@ -1,8 +1,8 @@
-using AuthService.Core.Application.Commands;
 using FluentValidation;
 using MediatR;
+using ProductService.Core.Application.Commands;
 
-namespace AuthService.Core.Application.Behaviors;
+namespace ProductService.Core.Application.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators

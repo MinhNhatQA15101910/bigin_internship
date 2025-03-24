@@ -1,12 +1,15 @@
 using ProductService.Core.Domain.Repositories;
 using ProductService.Infrastructure.Persistence;
 using ProductService.Presentation.Extensions;
+using ProductService.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

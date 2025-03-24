@@ -1,8 +1,8 @@
 using AuthService.Core.Application.Queries;
-using AuthService.Core.Domain.Exceptions;
 using AuthService.Core.Domain.Repositories;
 using AutoMapper;
 using SharedKernel.DTOs;
+using SharedKernel.Exceptions;
 
 namespace AuthService.Core.Application.Handlers.QueryHandlers;
 

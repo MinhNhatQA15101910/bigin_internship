@@ -1,7 +1,7 @@
 using System.Text.Json;
 using SharedKernel.Exceptions;
 
-namespace AuthService.Presentation.Middlewares;
+namespace ProductService.Presentation.Middlewares;
 
 public class ExceptionHandlingMiddleware(
     ILogger<ExceptionHandlingMiddleware> logger
