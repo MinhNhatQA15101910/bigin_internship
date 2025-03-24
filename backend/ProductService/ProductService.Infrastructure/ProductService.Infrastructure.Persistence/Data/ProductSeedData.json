@@ -1,0 +1,72 @@
+[
+  {
+    "ProductName": "Wireless Mouse",
+    "Category": "Electronics",
+    "Description": "A high-precision wireless mouse with ergonomic design.",
+    "Price": 25.99,
+    "StockQuantity": 150
+  },
+  {
+    "ProductName": "Mechanical Keyboard",
+    "Category": "Electronics",
+    "Description": "RGB mechanical keyboard with blue switches.",
+    "Price": 89.99,
+    "StockQuantity": 80
+  },
+  {
+    "ProductName": "Gaming Monitor",
+    "Category": "Electronics",
+    "Description": "27-inch 144Hz gaming monitor with 1ms response time.",
+    "Price": 279.99,
+    "StockQuantity": 50
+  },
+  {
+    "ProductName": "Bluetooth Speaker",
+    "Category": "Audio",
+    "Description": "Portable Bluetooth speaker with deep bass.",
+    "Price": 59.99,
+    "StockQuantity": 120
+  },
+  {
+    "ProductName": "Smartphone Stand",
+    "Category": "Accessories",
+    "Description": "Adjustable stand for smartphones and tablets.",
+    "Price": 15.49,
+    "StockQuantity": 300
+  },
+  {
+    "ProductName": "USB-C Hub",
+    "Category": "Accessories",
+    "Description": "5-in-1 USB-C hub with HDMI, USB, and SD card reader.",
+    "Price": 34.99,
+    "StockQuantity": 90
+  },
+  {
+    "ProductName": "Noise Cancelling Headphones",
+    "Category": "Audio",
+    "Description": "Wireless noise-canceling headphones with 30-hour battery life.",
+    "Price": 199.99,
+    "StockQuantity": 60
+  },
+  {
+    "ProductName": "Smartwatch",
+    "Category": "Wearables",
+    "Description": "Fitness smartwatch with heart rate and sleep tracking.",
+    "Price": 129.99,
+    "StockQuantity": 75
+  },
+  {
+    "ProductName": "Portable Power Bank",
+    "Category": "Accessories",
+    "Description": "20,000mAh power bank with fast charging capability.",
+    "Price": 39.99,
+    "StockQuantity": 200
+  },
+  {
+    "ProductName": "External Hard Drive",
+    "Category": "Storage",
+    "Description": "1TB external hard drive with USB 3.0 connectivity.",
+    "Price": 79.99,
+    "StockQuantity": 110
+  }
+]

@@ -16,4 +16,19 @@ public class ProductRepository : IProductRepository
         var mongoDatabase = mongoClient.GetDatabase(productDatabaseSettings.Value.DatabaseName);
         _products = mongoDatabase.GetCollection<Product>(productDatabaseSettings.Value.ProductsCollectionName);
     }
+
+    public async Task AddProductAsync(Product product)
+    {
+        await _products.InsertOneAsync(product);
+    }
+
+    public Task<bool> AnyAsync()
+    {
+        return _products.Find(product => true).AnyAsync();
+    }
+
+    public Task<Product> GetProductByIdAsync(string id)
+    {
+        return _products.Find(product => product.Id.ToString() == id).FirstOrDefaultAsync();
+    }
 }
