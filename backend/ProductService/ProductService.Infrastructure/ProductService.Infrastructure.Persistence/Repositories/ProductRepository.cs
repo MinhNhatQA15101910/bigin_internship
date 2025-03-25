@@ -17,18 +17,20 @@ public class ProductRepository : IProductRepository
         _products = mongoDatabase.GetCollection<Product>(productDatabaseSettings.Value.ProductsCollectionName);
     }
 
-    public async Task AddProductAsync(Product product)
+    public async Task AddProductAsync(Product product, CancellationToken cancellationToken = default)
     {
-        await _products.InsertOneAsync(product);
+        await _products.InsertOneAsync(product, cancellationToken: cancellationToken);
     }
 
-    public Task<bool> AnyAsync()
+    public Task<bool> AnyAsync(CancellationToken cancellationToken = default)
     {
-        return _products.Find(product => true).AnyAsync();
+        return _products.Find(product => true).AnyAsync(cancellationToken);
     }
 
-    public Task<Product> GetProductByIdAsync(string id)
+    public async Task<Product?> GetProductByIdAsync(string id, CancellationToken cancellationToken = default)
     {
-        return _products.Find(product => product.Id.ToString() == id).FirstOrDefaultAsync();
+        return await _products
+            .Find(product => product.Id.ToString() == id)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 }

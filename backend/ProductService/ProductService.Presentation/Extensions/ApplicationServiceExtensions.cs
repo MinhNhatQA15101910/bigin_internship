@@ -30,6 +30,9 @@ public static class ApplicationServiceExtensions
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddValidatorsFromAssembly(applicationAssembly);
 
+        // Others
+        services.AddAutoMapper(applicationAssembly);
+
         return services;
     }
 }

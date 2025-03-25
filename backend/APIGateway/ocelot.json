@@ -83,6 +83,14 @@
       "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
       "UpstreamPathTemplate": "/gateway/users/delete-photo/{photoId}",
       "UpstreamHttpMethod": ["Delete"]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
+      "UpstreamPathTemplate": "/gateway/products/{id}",
+      "UpstreamHttpMethod": ["Get"]
     }
   ],
   "GlobalConfiguration": {

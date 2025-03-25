@@ -4,7 +4,7 @@ namespace ProductService.Core.Domain.Repositories;
 
 public interface IProductRepository
 {
-    Task AddProductAsync(Product product);
-    Task<bool> AnyAsync();
-    Task<Product> GetProductByIdAsync(string id);
+    Task AddProductAsync(Product product, CancellationToken cancellationToken = default);
+    Task<bool> AnyAsync(CancellationToken cancellationToken = default);
+    Task<Product?> GetProductByIdAsync(string id, CancellationToken cancellationToken = default);
 }
