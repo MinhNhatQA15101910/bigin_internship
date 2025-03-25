@@ -1,4 +1,5 @@
 using AutoMapper;
+using ProductService.Core.Application.DTOs;
 using ProductService.Core.Domain.Entities;
 using SharedKernel.DTOs;
 
@@ -9,5 +10,6 @@ public class AutoMapperProfiles : Profile
     public AutoMapperProfiles()
     {
         CreateMap<Product, ProductDto>();
+        CreateMap<AddUpdateProductDto, Product>();
     }
 }

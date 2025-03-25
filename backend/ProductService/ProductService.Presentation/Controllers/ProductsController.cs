@@ -1,5 +1,8 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProductService.Core.Application.Commands;
+using ProductService.Core.Application.DTOs;
 using ProductService.Core.Application.Queries;
 using SharedKernel.DTOs;
 
@@ -14,5 +17,13 @@ public class ProductsController(IMediator mediator) : ControllerBase
     {
         var product = await mediator.Send(new GetProductByIdQuery(id));
         return Ok(product);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<ProductDto>> CreateProduct(AddUpdateProductDto addProductDto)
+    {
+        var product = await mediator.Send(new AddProductCommand(addProductDto));
+        return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
     }
 }

@@ -33,4 +33,11 @@ public class ProductRepository : IProductRepository
             .Find(product => product.Id.ToString() == id)
             .FirstOrDefaultAsync(cancellationToken);
     }
+
+    public async Task<Product?> GetProductByNameAsync(string productName, CancellationToken cancellationToken = default)
+    {
+        return await _products
+            .Find(product => product.ProductName == productName)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
 }
