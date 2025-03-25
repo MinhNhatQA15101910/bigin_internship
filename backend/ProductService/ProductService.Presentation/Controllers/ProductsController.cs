@@ -33,9 +33,17 @@ public class ProductsController(IMediator mediator) : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<ProductDto>> CreateProduct(AddUpdateProductDto addProductDto)
+    public async Task<ActionResult<ProductDto>> CreateProduct(AddProductDto addProductDto)
     {
         var product = await mediator.Send(new AddProductCommand(addProductDto));
         return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
+    }
+
+    [HttpPut("{id:length(24)}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<ProductDto>> UpdateProduct(string id, UpdateProductDto updateProductDto)
+    {
+        await mediator.Send(new UpdateProductCommand(id, updateProductDto));
+        return NoContent();
     }
 }

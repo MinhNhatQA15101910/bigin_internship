@@ -3,4 +3,4 @@ using SharedKernel.DTOs;
 
 namespace ProductService.Core.Application.Commands;
 
-public record AddProductCommand(AddUpdateProductDto AddProductDto) : ICommand<ProductDto>;
+public record AddProductCommand(AddProductDto AddProductDto) : ICommand<ProductDto>;

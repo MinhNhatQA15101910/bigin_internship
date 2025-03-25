@@ -98,4 +98,34 @@ public class ProductRepository : IProductRepository
             cancellationToken
         );
     }
+
+    public async Task<UpdateResult> UpdateProductAsync(string id, Product updatedProduct, CancellationToken cancellationToken = default)
+    {
+        var updateDefinition = new List<UpdateDefinition<Product>>();
+
+        if (!string.IsNullOrEmpty(updatedProduct.ProductName))
+            updateDefinition.Add(Builders<Product>.Update.Set(p => p.ProductName, updatedProduct.ProductName));
+
+        if (!string.IsNullOrEmpty(updatedProduct.Description))
+            updateDefinition.Add(Builders<Product>.Update.Set(p => p.Description, updatedProduct.Description));
+
+        if (!string.IsNullOrEmpty(updatedProduct.Category))
+            updateDefinition.Add(Builders<Product>.Update.Set(p => p.Category, updatedProduct.Category));
+
+        if (updatedProduct.Price != null)
+            updateDefinition.Add(Builders<Product>.Update.Set(p => p.Price, updatedProduct.Price));
+
+        if (updatedProduct.StockQuantity != null)
+            updateDefinition.Add(Builders<Product>.Update.Set(p => p.StockQuantity, updatedProduct.StockQuantity));
+
+        updateDefinition.Add(Builders<Product>.Update.Set(p => p.UpdatedAt, updatedProduct.UpdatedAt));
+
+        var update = Builders<Product>.Update.Combine(updateDefinition);
+
+        return await _products.UpdateOneAsync(
+            p => p.Id == id,
+            update,
+            cancellationToken: cancellationToken
+        );
+    }
 }

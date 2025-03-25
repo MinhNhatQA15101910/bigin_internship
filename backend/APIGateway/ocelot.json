@@ -105,6 +105,13 @@
       "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
       "UpstreamPathTemplate": "/gateway/products",
       "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
+      "UpstreamPathTemplate": "/gateway/products/{id}",
+      "UpstreamHttpMethod": ["Put"]
     }
   ],
   "GlobalConfiguration": {

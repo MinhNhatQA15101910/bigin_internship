@@ -10,6 +10,7 @@ public class AutoMapperProfiles : Profile
     public AutoMapperProfiles()
     {
         CreateMap<Product, ProductDto>();
-        CreateMap<AddUpdateProductDto, Product>();
+        CreateMap<AddProductDto, Product>();
+        CreateMap<UpdateProductDto, Product>();
     }
 }

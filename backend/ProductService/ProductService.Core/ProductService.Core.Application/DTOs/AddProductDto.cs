@@ -1,6 +1,6 @@
 namespace ProductService.Core.Application.DTOs;
 
-public class AddUpdateProductDto
+public class AddProductDto
 {
     public string ProductName { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
