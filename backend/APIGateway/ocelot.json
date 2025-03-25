@@ -41,6 +41,48 @@
       "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
       "UpstreamPathTemplate": "/gateway/users/me",
       "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users/{id}",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/change-password",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users/change-password",
+      "UpstreamHttpMethod": ["Patch"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users",
+      "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/add-photo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users/add-photo",
+      "UpstreamHttpMethod": ["Post"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/set-main-photo/{photoId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users/set-main-photo/{photoId}",
+      "UpstreamHttpMethod": ["Put"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/delete-photo/{photoId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1000 }],
+      "UpstreamPathTemplate": "/gateway/users/delete-photo/{photoId}",
+      "UpstreamHttpMethod": ["Delete"]
     }
   ],
   "GlobalConfiguration": {
