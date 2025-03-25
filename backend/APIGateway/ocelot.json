@@ -112,6 +112,13 @@
       "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
       "UpstreamPathTemplate": "/gateway/products/{id}",
       "UpstreamHttpMethod": ["Put"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
+      "UpstreamPathTemplate": "/gateway/products/{id}",
+      "UpstreamHttpMethod": ["Delete"]
     }
   ],
   "GlobalConfiguration": {

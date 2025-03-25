@@ -46,4 +46,12 @@ public class ProductsController(IMediator mediator) : ControllerBase
         await mediator.Send(new UpdateProductCommand(id, updateProductDto));
         return NoContent();
     }
+
+    [HttpDelete("{id:length(24)}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteProduct(string id)
+    {
+        await mediator.Send(new DeleteProductCommand(id));
+        return Ok();
+    }
 }

@@ -30,6 +30,11 @@ public class ProductRepository : IProductRepository
         return _products.Find(product => true).AnyAsync(cancellationToken);
     }
 
+    public async Task<DeleteResult> DeleteProductAsync(Product product, CancellationToken cancellationToken)
+    {
+        return await _products.DeleteOneAsync(p => p.Id == product.Id, cancellationToken);
+    }
+
     public async Task<Product?> GetProductByIdAsync(string id, CancellationToken cancellationToken = default)
     {
         return await _products
