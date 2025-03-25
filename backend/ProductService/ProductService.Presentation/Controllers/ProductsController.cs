@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using ProductService.Core.Application.Commands;
 using ProductService.Core.Application.DTOs;
 using ProductService.Core.Application.Queries;
+using ProductService.Presentation.Extensions;
 using SharedKernel.DTOs;
+using SharedKernel.Params;
 
 namespace ProductService.Presentation.Controllers;
 
@@ -17,6 +19,16 @@ public class ProductsController(IMediator mediator) : ControllerBase
     {
         var product = await mediator.Send(new GetProductByIdQuery(id));
         return Ok(product);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] ProductParams productParams)
+    {
+        var products = await mediator.Send(new GetProductsQuery(productParams));
+
+        Response.AddPaginationHeader(products);
+
+        return Ok(products);
     }
 
     [HttpPost]
