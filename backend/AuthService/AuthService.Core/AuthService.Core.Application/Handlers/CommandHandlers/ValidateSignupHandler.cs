@@ -4,10 +4,10 @@ using AuthService.Core.Application.Notifications;
 using AuthService.Core.Application.Services;
 using AuthService.Core.Domain.Entities;
 using AuthService.Core.Domain.Enums;
+using AuthService.Core.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.Exceptions;
 
 namespace AuthService.Core.Application.Handlers.CommandHandlers;
 

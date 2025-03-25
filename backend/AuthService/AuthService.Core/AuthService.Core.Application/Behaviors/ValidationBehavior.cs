@@ -32,7 +32,7 @@ public class ValidationBehavior<TRequest, TResponse>(
 
         if (errorsDictionary.Count != 0)
         {
-            throw new SharedKernel.Exceptions.ValidationException(errorsDictionary);
+            throw new Domain.Exceptions.ValidationException(errorsDictionary);
         }
 
         return await next();

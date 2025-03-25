@@ -1,5 +1,5 @@
 using System.Text.Json;
-using SharedKernel.Exceptions;
+using AuthService.Core.Domain.Exceptions;
 
 namespace AuthService.Presentation.Middlewares;
 
@@ -52,7 +52,7 @@ public class ExceptionHandlingMiddleware(
     private static string GetTitle(Exception exception)
         => exception switch
         {
-            SharedKernel.Exceptions.ApplicationException applicationException => applicationException.Title,
+            Core.Domain.Exceptions.ApplicationException applicationException => applicationException.Title,
             _ => "Server Error"
         };
 

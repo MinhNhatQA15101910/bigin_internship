@@ -1,7 +1,7 @@
 using AuthService.Core.Application.Commands;
 using AuthService.Core.Domain.Entities;
+using AuthService.Core.Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
-using SharedKernel.Exceptions;
 
 namespace AuthService.Core.Application.Handlers.CommandHandlers;
 

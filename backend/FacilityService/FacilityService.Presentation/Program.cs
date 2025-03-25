@@ -1,18 +1,12 @@
-using AuthService.Core.Domain.Entities;
-using AuthService.Infrastructure.Persistence;
-using AuthService.Presentation.Extensions;
-using AuthService.Presentation.Middlewares;
-using Microsoft.AspNetCore.Identity;
+using FacilityService.Infrastructure.Persistence;
+using FacilityService.Presentation.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
-
-app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
@@ -21,11 +15,9 @@ var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<DataContext>();
-    var userManager = services.GetRequiredService<UserManager<User>>();
-    var roleManager = services.GetRequiredService<RoleManager<Role>>();
 
     await context.Database.MigrateAsync();
-    await Seed.SeedUsersAsync(userManager, roleManager);
+    await Seed.SeedFacilitiesAsync(context);
 }
 catch (Exception ex)
 {
