@@ -1,10 +1,14 @@
 using FacilityService.Core.Domain.Enums;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace FacilityService.Core.Domain.Entities;
 
 public class Facility
 {
-    public Guid Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; } = null!;
     public Guid UserId { get; set; }
     public string FacilityName { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
@@ -15,16 +19,13 @@ public class Facility
     public decimal MaxPrice { get; set; }
     public string DetailAddress { get; set; } = string.Empty;
     public string Province { get; set; } = string.Empty;
-    public Location Location { get; set; } = new Location();
+    public Location? Location { get; set; }
     public float RatingAvg { get; set; }
     public int TotalRatings { get; set; }
-    public Active ActiveAt { get; set; } = new Active();
+    public Active? ActiveAt { get; set; }
     public FacilityState State { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public IEnumerable<FacilityPhoto> Photos { get; set; } = [];
-
-    // Navigation properties
-    public Guid ManagerInfoId { get; set; }
     public ManagerInfo ManagerInfo { get; set; } = null!;
 }
