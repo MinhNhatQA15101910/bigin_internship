@@ -1,6 +1,8 @@
 [
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa92",
+    "_id": {
+      "$oid": "671cac2452f035314caed71a"
+    },
     "UserId": "d8e4a2b9-3f60-4e1c-8c2d-7b9a5d6e1f3b",
     "FacilityName": "Sân Cầu Lông TamBo",
     "Description": "Sân Cầu Lông TamBo là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
@@ -100,7 +102,9 @@
     }
   },
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa93",
+    "_id": {
+      "$oid": "671cadb452f035314caed732"
+    },
     "UserId": "6b7e8c3d-9a2f-4d5b-8e1c-7f6a2b4d3c0e",
     "FacilityName": "Sân Cầu Lông ĐHCT",
     "Description": "Sân Cầu Lông ĐHCT là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
@@ -200,7 +204,9 @@
     }
   },
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa94",
+    "_id": {
+      "$oid": "671caf4f52f035314caed74b"
+    },
     "UserId": "c2d7f9a5-3b1e-4c6d-8e0f-7a9b2d5c4e3f",
     "FacilityName": "Sân Cầu Lông Trần Não",
     "Description": "Sân Cầu Lông Trần Não là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
@@ -300,7 +306,9 @@
     }
   },
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa95",
+    "_id": {
+      "$oid": "671cb28fe8b56d6b54f5d726"
+    },
     "UserId": "9e2c5d7b-8a4f-3c1d-6e0f-7b5a9d2c4e3f",
     "FacilityName": "Sân cầu lông THPT MARIE CURIE",
     "Description": "Sân cầu lông THPT MARIE CURIE là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
@@ -392,7 +400,9 @@
     }
   },
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa96",
+    "_id": {
+      "$oid": "671cb416e8b56d6b54f5d73d"
+    },
     "UserId": "4d3f7e9b-2c5a-1e6d-8a0f-7b9d2c4e5f3b",
     "FacilityName": "Trung Tâm TDTT Sân Cầu Lông",
     "Description": "Trung Tâm TDTT Sân Cầu Lông là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
@@ -492,7 +502,9 @@
     }
   },
   {
-    "Id": "ed2de601-0dd8-4a73-9be1-5710d631aa97",
+    "_id": {
+      "$oid": "671cb530e8b56d6b54f5d755"
+    },
     "UserId": "7a2f9d5b-4c3e-1d6e-8b0f-7c5a9d2e4f3b",
     "FacilityName": "Sân Cầu Lông Tiến Dinh Sport",
     "Description": "Sân Cầu Lông Tiến Dinh Sport là một sân cầu lông được trang bị đầy đủ tiện nghi hiện đại, mang đến trải nghiệm tốt nhất cho người chơi. Sân có hệ thống đèn chiếu sáng đạt chuẩn, sàn cầu lông chất lượng cao giúp giảm chấn thương và tạo cảm giác thoải mái khi chơi.",
