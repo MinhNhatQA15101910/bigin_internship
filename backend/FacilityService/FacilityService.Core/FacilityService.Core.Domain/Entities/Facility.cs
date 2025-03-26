@@ -9,6 +9,8 @@ public class Facility
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = null!;
+
+    [BsonRepresentation(BsonType.String)]
     public Guid UserId { get; set; }
     public string FacilityName { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
@@ -23,9 +25,11 @@ public class Facility
     public float RatingAvg { get; set; }
     public int TotalRatings { get; set; }
     public Active? ActiveAt { get; set; }
+
+    [BsonRepresentation(BsonType.String)]
     public FacilityState State { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     public IEnumerable<FacilityPhoto> Photos { get; set; } = [];
     public ManagerInfo ManagerInfo { get; set; } = null!;
 }

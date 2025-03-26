@@ -1,5 +1,6 @@
-using FacilityService.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using FacilityService.Core.Domain.Repositories;
+using FacilityService.Infrastructure.Configuration;
+using FacilityService.Infrastructure.Persistence.Repositories;
 
 namespace FacilityService.Presentation.Extensions;
 
@@ -9,13 +10,11 @@ public static class ApplicationServiceExtensions
     {
         services.AddControllers();
 
-        services.AddDbContext<DataContext>(options =>
-        {
-            options.UseSqlite(
-                config.GetConnectionString("DefaultConnection"),
-                options => options.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
-            );
-        });
+        // Options pattern
+        services.Configure<FacilityDatabaseSettings>(config.GetSection(nameof(FacilityDatabaseSettings)));
+
+        // Repositories
+        services.AddScoped<IFacilityRepository, FacilityRepository>();
 
         return services;
     }

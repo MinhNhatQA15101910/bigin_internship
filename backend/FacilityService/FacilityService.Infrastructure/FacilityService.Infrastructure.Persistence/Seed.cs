@@ -1,16 +1,16 @@
 using System.Text.Json;
 using FacilityService.Core.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using FacilityService.Core.Domain.Repositories;
 
 namespace FacilityService.Infrastructure.Persistence;
 
 public class Seed
 {
     public static async Task SeedFacilitiesAsync(
-        DataContext context
+        IFacilityRepository facilityRepository
     )
     {
-        if (await context.Facilities.AnyAsync()) return;
+        if (await facilityRepository.AnyAsync()) return;
 
         var userData = await File.ReadAllTextAsync(
             "../FacilityService.Infrastructure/FacilityService.Infrastructure.Persistence/Data/FacilitySeedData.json"
@@ -25,11 +25,6 @@ public class Seed
 
         if (facilities == null) return;
 
-        foreach (var facility in facilities)
-        {
-            context.Facilities.Add(facility);
-        }
-
-        await context.SaveChangesAsync();
+        await facilityRepository.InsertManyAsync(facilities);
     }
 }

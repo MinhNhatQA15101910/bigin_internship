@@ -1,10 +1,8 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace FacilityService.Core.Domain.Entities;
 
-[Table("FacilityPhotos")]
 public class FacilityPhoto
 {
     [BsonId]

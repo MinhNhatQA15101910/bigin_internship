@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FacilityService.Core\FacilityService.Core.Domain\FacilityService.Core.Domain.csproj" />
+    <ProjectReference Include="..\FacilityService.Infrastructure.Configuration\FacilityService.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

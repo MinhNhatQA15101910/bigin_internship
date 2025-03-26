@@ -1,3 +1,4 @@
+using FacilityService.Core.Domain.Repositories;
 using FacilityService.Infrastructure.Persistence;
 using FacilityService.Presentation.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,9 @@ using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
 {
-    var context = services.GetRequiredService<DataContext>();
+    var facilityRepository = services.GetRequiredService<IFacilityRepository>();
 
-    await context.Database.MigrateAsync();
-    await Seed.SeedFacilitiesAsync(context);
+    await Seed.SeedFacilitiesAsync(facilityRepository);
 }
 catch (Exception ex)
 {
