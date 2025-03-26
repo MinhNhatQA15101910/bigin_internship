@@ -33,6 +33,12 @@ public class FacilityRepository : IFacilityRepository
         return await _facilities.Find(_ => true).AnyAsync(cancellationToken);
     }
 
+    public async Task<Facility?> GetFacilityByIdAsync(string id, CancellationToken cancellationToken = default)
+    {
+        return await _facilities.Find(facility => facility.Id == id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
     public Task InsertManyAsync(IEnumerable<Facility> facilities, CancellationToken cancellationToken = default)
     {
         return _facilities.InsertManyAsync(facilities, cancellationToken: cancellationToken);

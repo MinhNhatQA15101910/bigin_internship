@@ -1,11 +1,11 @@
 using AuthService.Core.Application.Commands;
 using AuthService.Core.Application.Interfaces;
 using AuthService.Core.Domain.Entities;
-using AuthService.Core.Domain.Exceptions;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.DTOs;
+using SharedKernel.Exceptions;
 
 namespace AuthService.Core.Application.Handlers.CommandHandlers;
 

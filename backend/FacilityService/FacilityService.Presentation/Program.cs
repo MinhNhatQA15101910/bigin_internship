@@ -1,13 +1,15 @@
 using FacilityService.Core.Domain.Repositories;
 using FacilityService.Infrastructure.Persistence;
 using FacilityService.Presentation.Extensions;
-using Microsoft.EntityFrameworkCore;
+using FacilityService.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

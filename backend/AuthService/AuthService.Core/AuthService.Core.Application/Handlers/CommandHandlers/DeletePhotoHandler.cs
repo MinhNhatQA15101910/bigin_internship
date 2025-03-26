@@ -1,8 +1,8 @@
 using AuthService.Core.Application.Commands;
 using AuthService.Core.Application.Interfaces;
-using AuthService.Core.Domain.Exceptions;
 using AuthService.Core.Domain.Repositories;
 using CloudinaryDotNet.Actions;
+using SharedKernel.Exceptions;
 
 namespace AuthService.Core.Application.Handlers.CommandHandlers;
 
