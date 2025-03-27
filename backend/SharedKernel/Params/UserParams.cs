@@ -1,5 +1,3 @@
-using System;
-
 namespace SharedKernel.Params;
 
 public class UserParams : PaginationParams
