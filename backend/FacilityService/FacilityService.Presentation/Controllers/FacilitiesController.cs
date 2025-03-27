@@ -1,7 +1,9 @@
 using FacilityService.Core.Application.Queries;
+using FacilityService.Presentation.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.DTOs;
+using SharedKernel.Params;
 
 namespace FacilityService.Presentation.Controllers;
 
@@ -14,5 +16,15 @@ public class FacilitiesController(IMediator mediator) : ControllerBase
     {
         var facility = await mediator.Send(new GetFacilityByIdQuery(id));
         return Ok(facility);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] FacilityParams facilityParams)
+    {
+        var facilities = await mediator.Send(new GetFacilitiesQuery(facilityParams));
+
+        Response.AddPaginationHeader(facilities);
+
+        return Ok(facilities);
     }
 }

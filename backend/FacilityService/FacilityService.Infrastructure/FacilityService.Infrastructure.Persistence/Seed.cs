@@ -12,7 +12,7 @@ public class Seed
     {
         if (await facilityRepository.AnyAsync()) return;
 
-        var userData = await File.ReadAllTextAsync(
+        var facilityData = await File.ReadAllTextAsync(
             "../FacilityService.Infrastructure/FacilityService.Infrastructure.Persistence/Data/FacilitySeedData.json"
         );
 
@@ -21,10 +21,14 @@ public class Seed
             PropertyNameCaseInsensitive = true
         };
 
-        var facilities = JsonSerializer.Deserialize<List<Facility>>(userData, options);
+        var facilities = JsonSerializer.Deserialize<List<Facility>>(facilityData, options);
 
         if (facilities == null) return;
 
-        await facilityRepository.InsertManyAsync(facilities);
+        foreach (var facility in facilities)
+        {
+            Console.WriteLine("Adding facility: " + facility.FacilityName);
+            await facilityRepository.AddFacilityAsync(facility);
+        }
     }
 }

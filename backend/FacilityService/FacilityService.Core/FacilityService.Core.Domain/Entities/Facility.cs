@@ -21,7 +21,10 @@ public class Facility
     public decimal MaxPrice { get; set; }
     public string DetailAddress { get; set; } = string.Empty;
     public string Province { get; set; } = string.Empty;
-    public Location? Location { get; set; }
+
+    [BsonElement("location")]
+    public Location Location { get; set; } = new Location();
+
     public float RatingAvg { get; set; }
     public int TotalRatings { get; set; }
     public Active? ActiveAt { get; set; }
@@ -29,7 +32,11 @@ public class Facility
     [BsonRepresentation(BsonType.String)]
     public FacilityState State { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     public IEnumerable<FacilityPhoto> Photos { get; set; } = [];
     public ManagerInfo ManagerInfo { get; set; } = null!;
+
+    [BsonIgnoreIfNull]
+    public double Distance { get; set; }
 }

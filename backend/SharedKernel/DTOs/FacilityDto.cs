@@ -18,7 +18,7 @@ public class FacilityDto
     public int TotalRatings { get; set; }
     public ActiveDto? ActiveAt { get; set; }
     public string State { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
     public IEnumerable<PhotoDto> Photos { get; set; } = [];
     public ManagerInfoDto ManagerInfo { get; set; } = null!;
 }
