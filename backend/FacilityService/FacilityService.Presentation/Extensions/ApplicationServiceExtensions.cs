@@ -6,6 +6,7 @@ using FacilityService.Infrastructure.Persistence.Repositories;
 using FacilityService.Presentation.Middlewares;
 using FluentValidation;
 using MediatR;
+using StackExchange.Redis;
 
 namespace FacilityService.Presentation.Extensions;
 
@@ -29,6 +30,16 @@ public static class ApplicationServiceExtensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddValidatorsFromAssembly(applicationAssembly);
+
+        // Redis
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = config["RedisCacheSettings:Configuration"];
+            options.InstanceName = config["RedisCacheSettings:InstanceName"];
+        });
+
+        services.AddSingleton<IConnectionMultiplexer>(sp =>
+            ConnectionMultiplexer.Connect(config["RedisCacheSettings:Configuration"]!));
 
         // Others
         services.AddAutoMapper(applicationAssembly);
