@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "badcourt",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "primeicons": "^7.0.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
