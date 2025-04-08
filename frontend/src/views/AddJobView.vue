@@ -2,7 +2,7 @@
 import router from '@/router'
 import { reactive } from 'vue'
 import axios from 'axios'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { useToast } from 'vue-toastification'
 
 const form = reactive({
   type: 'Full-Time',
@@ -18,6 +18,8 @@ const form = reactive({
   },
 })
 
+const toast = useToast()
+
 const handleSubmit = async () => {
   const newJob = {
     ...form,
@@ -26,8 +28,10 @@ const handleSubmit = async () => {
   try {
     const response = await axios.post(`/api/jobs/`, newJob)
     router.push(`/jobs/${response.data.id}`)
+    toast.success('Job added successfully!')
   } catch (error) {
     console.error('Error fetching jobs:', error)
+    toast.error('Error adding job. Please try again.')
   }
 }
 </script>
