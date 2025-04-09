@@ -4,8 +4,12 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import { reactive } from 'vue'
 import { login } from '@/_services/authService'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import { useAuthStore } from '@/stores/authStore'
 
+const authStore = useAuthStore()
 const router = useRouter()
+const toast = useToast()
 
 const form = reactive({
   email: '',
@@ -23,9 +27,13 @@ const handleSubmit = async () => {
 
   state.isLoading = true
 
-  var isSuccess = await login(loginDto)
-  if (isSuccess) {
+  var user = await login(loginDto)
+  if (user) {
+    authStore.setUser(user)
+
     router.push('/')
+  } else {
+    toast.error('Login failed')
   }
 
   state.isLoading = false
