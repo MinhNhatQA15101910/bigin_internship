@@ -1,6 +1,8 @@
 <script setup>
+import Hero from '@/home/components/Hero.vue'
+import HomeCards from '@/home/components/HomeCards.vue'
+
 import { onMounted } from 'vue'
-import Navbar from '../components/Navbar.vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 
@@ -15,5 +17,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <Navbar />
+  <Hero />
+  <HomeCards />
 </template>
