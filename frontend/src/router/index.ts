@@ -1,4 +1,5 @@
 import AddJobView from '@/views/AddJobView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
 import EditJobView from '@/views/EditJobView.vue'
 import HomeView from '@/views/HomeView.vue'
 import JobsView from '@/views/JobsView.vue'
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/jobs/edit/:id',
       name: 'edit-job',
       component: EditJobView,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
     },
     {
       path: '/:catchAll(.*)',
