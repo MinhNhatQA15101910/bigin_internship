@@ -5,14 +5,19 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 
-export const login = async (payload: any) => {
+export const login = async (payload: any): Promise<boolean> => {
   return errorHandler(async () => {
     const response = await axios.post<User>('/api/auth/login', payload)
 
     const user = response.data
+    if (!user) {
+      toast.error('Login failed')
+      return false
+    }
+
     localStorage.setItem('user', JSON.stringify(user))
     toast.success('Login successfully')
 
-    return user
+    return true
   })
 }

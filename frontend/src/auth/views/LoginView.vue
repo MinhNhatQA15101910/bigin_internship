@@ -1,10 +1,19 @@
 <script setup>
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 import { reactive } from 'vue'
 import { login } from '@/_services/authService'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const form = reactive({
   email: '',
   password: '',
+})
+
+const state = reactive({
+  isLoading: false,
 })
 
 const handleSubmit = async () => {
@@ -12,8 +21,14 @@ const handleSubmit = async () => {
     ...form,
   }
 
-  const result = await login(loginDto)
-  console.log(result)
+  state.isLoading = true
+
+  var isSuccess = await login(loginDto)
+  if (isSuccess) {
+    router.push('/')
+  }
+
+  state.isLoading = false
 }
 </script>
 
@@ -49,13 +64,17 @@ const handleSubmit = async () => {
           />
         </div>
 
-        <div>
+        <div v-if="!state.isLoading">
           <button
             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Login
           </button>
+        </div>
+
+        <div v-else class="text-center text-gray-500 py-6">
+          <PulseLoader />
         </div>
       </form>
     </div>
