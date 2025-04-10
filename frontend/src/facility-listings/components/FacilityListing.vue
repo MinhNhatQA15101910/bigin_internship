@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import 'vue3-carousel/carousel.css'
-import { Carousel, Slide } from 'vue3-carousel'
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
 const props = defineProps({
   facility: {
@@ -34,15 +34,27 @@ const handleImageError = (e) => {
 <template>
   <div class="bg-white rounded-xl shadow-md overflow-hidden">
     <!-- Carousel -->
-    <Carousel :items-to-show="1" :wrap-around="true" :autoplay="false" class="w-full h-64">
+    <Carousel
+      :items-to-show="1"
+      :wrap-around="true"
+      :autoplay="3000"
+      :mouse-drag="true"
+      :pause-autoplay-on-hover="true"
+      class="rounded-xl overflow-hidden"
+    >
       <Slide v-for="(photo, index) in facility.photos" :key="photo.id || index">
         <img
-          :src="photo.url"
+          :src="photo.url || defaultImage"
           @error="handleImageError"
           alt="Facility Photo"
-          class="object-cover w-full h-64"
+          class="w-full h-64 object-cover"
         />
       </Slide>
+
+      <!-- Custom navigation arrows -->
+      <template #addons>
+        <Navigation />
+      </template>
     </Carousel>
 
     <!-- Info -->
@@ -89,3 +101,19 @@ const handleImageError = (e) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.carousel__prev,
+.carousel__next {
+  color: white; /* Sets arrow icon color */
+  background-color: rgba(0, 0, 0, 0.4); /* Optional: semi-transparent dark background */
+  border-radius: 9999px;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.carousel__prev:hover,
+.carousel__next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+</style>

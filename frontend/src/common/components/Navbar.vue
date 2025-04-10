@@ -65,18 +65,22 @@ const logout = () => authStore.logout()
             >
 
             <RouterLink
-              to="/jobs"
+              to="/facilities"
               :class="[
-                isActiveLink('/jobs') ? 'bg-green-900' : 'hover:bg-green-900 hover:text-white',
+                isActiveLink('/facilities')
+                  ? 'bg-green-900'
+                  : 'hover:bg-green-900 hover:text-white',
                 'text-white rounded-md px-3 py-2',
               ]"
               >Facilities</RouterLink
             >
 
             <RouterLink
-              to="/jobs/add"
+              to="/facilities/add"
               :class="[
-                isActiveLink('/jobs/add') ? 'bg-green-900' : 'hover:bg-green-900 hover:text-white',
+                isActiveLink('/facilities/add')
+                  ? 'bg-green-900'
+                  : 'hover:bg-green-900 hover:text-white',
                 'text-white rounded-md px-3 py-2',
               ]"
               >Add Facility</RouterLink

@@ -49,7 +49,7 @@ onMounted(async () => {
 
   <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
     <RouterLink
-      to="/jobs"
+      to="/facilities"
       class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
       >View All Facilities</RouterLink
     >
