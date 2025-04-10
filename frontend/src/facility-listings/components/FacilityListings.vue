@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, reactive } from 'vue'
-import JobListing from './JobListing.vue'
+import FacilityListing from './FacilityListing.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import { RouterLink } from 'vue-router'
-import axios from 'axios'
+import { getFacilities } from '@/_services/facilitiesService'
 
 defineProps({
   limit: Number,
@@ -14,26 +14,22 @@ defineProps({
 })
 
 const state = reactive({
-  jobs: [],
+  facilities: [],
   isLoading: true,
 })
 
 onMounted(async () => {
-  try {
-    const response = await axios.get('/api/jobs')
-    state.jobs = response.data
-  } catch (error) {
-    console.error('Error fetching jobs:', error)
-  } finally {
-    state.isLoading = false
-  }
+  state.facilities = await getFacilities()
+  console.log(state.facilities)
+
+  state.isLoading = false
 })
 </script>
 
 <template>
   <section class="bg-blue-100 py-10 px-4">
     <div class="container-xl lg:container m-auto">
-      <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">Browse Jobs</h2>
+      <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">Browse Facilities</h2>
 
       <!-- Show loading spinner while loading is true -->
       <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
@@ -42,10 +38,10 @@ onMounted(async () => {
 
       <!-- Show job listing when done loading -->
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <JobListing
-          v-for="job in state.jobs.slice(0, limit || state.jobs.length)"
-          :key="job.id"
-          :job="job"
+        <FacilityListing
+          v-for="facility in state.facilities.slice(0, limit || state.facilities.length)"
+          :key="facility.id"
+          :facility="facility"
         />
       </div>
     </div>
@@ -55,7 +51,7 @@ onMounted(async () => {
     <RouterLink
       to="/jobs"
       class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
-      >View All Jobs</RouterLink
+      >View All Facilities</RouterLink
     >
   </section>
 </template>
