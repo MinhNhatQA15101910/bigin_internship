@@ -2,9 +2,11 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 namespace SharedKernel;
 
+[JsonObject]
 public class PagedList<T> : List<T>
 {
     public PagedList() { }
@@ -22,6 +24,7 @@ public class PagedList<T> : List<T>
     public int TotalPages { get; set; }
     public int PageSize { get; set; }
     public int TotalCount { get; set; }
+    public List<T> Items => [.. this];
 
     public static async Task<PagedList<T>> CreateAsync(
         IQueryable<T> source,

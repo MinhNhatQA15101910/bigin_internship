@@ -1,5 +1,6 @@
 import LoginView from '@/auth/views/LoginView.vue'
 import NotFoundView from '@/common/views/NotFoundView.vue'
+import AddFacilityView from '@/add-facility/views/AddFacilityView.vue'
 import FacilityView from '@/facility-detail/views/FacilityView.vue'
 import FacilitiesView from '@/facility-listings/views/FacilitiesView.vue'
 import HomeView from '@/home/views/HomeView.vue'
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/facilities/:id',
       name: 'facility-detail',
       component: FacilityView,
+    },
+    {
+      path: '/facilities/add',
+      name: 'add-facility',
+      component: AddFacilityView,
     },
     {
       path: '/login',
