@@ -11,7 +11,7 @@ import { RouterLink } from 'vue-router'
           <h2 class="text-2xl font-bold">For Players</h2>
           <p class="mt-2 mb-4">Find and book badminton courts near you in seconds</p>
           <RouterLink
-            to="/jobs"
+            to="/facilities"
             class="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
           >
             Find Courts
@@ -21,7 +21,7 @@ import { RouterLink } from 'vue-router'
           <h2 class="text-2xl font-bold">For Court Owners</h2>
           <p class="mt-2 mb-4">Add your facility and start managing bookings with ease</p>
           <RouterLink
-            to="/jobs/add"
+            to="/facilities/add"
             class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"
           >
             Add Your Court
