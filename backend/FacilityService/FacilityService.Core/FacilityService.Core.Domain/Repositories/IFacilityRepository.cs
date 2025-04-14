@@ -11,5 +11,6 @@ public interface IFacilityRepository
     Task<bool> AnyAsync(CancellationToken cancellationToken = default);
     Task<PagedList<FacilityDto>> GetFacilitiesAsync(FacilityParams facilityParams, CancellationToken cancellationToken = default);
     Task<Facility?> GetFacilityByIdAsync(string id, CancellationToken cancellationToken = default);
+    Task<List<string>> GetFacilityProvincesAsync(CancellationToken cancellationToken);
     Task InsertManyAsync(IEnumerable<Facility> facilities, CancellationToken cancellationToken = default);
 }

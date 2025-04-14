@@ -1,4 +1,3 @@
-using System.Text.Json;
 using FacilityService.Core.Application.Queries;
 using FacilityService.Core.Domain.Repositories;
 using Microsoft.Extensions.Caching.Distributed;
@@ -14,13 +13,6 @@ public class GetFacilitiesHandler(
     IDistributedCache cache
 ) : IQueryHandler<GetFacilitiesQuery, PagedList<FacilityDto>>
 {
-    // public async Task<PagedList<FacilityDto>> Handle(GetFacilitiesQuery request, CancellationToken cancellationToken)
-    // {
-    //     var facilities = await facilityRepository.GetFacilitiesAsync(request.FacilityParams, cancellationToken);
-
-    //     return facilities;
-    // }
-
     public async Task<PagedList<FacilityDto>> Handle(GetFacilitiesQuery request, CancellationToken cancellationToken)
     {
         var cacheKey = GetCacheKey(request);

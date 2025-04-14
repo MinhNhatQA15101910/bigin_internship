@@ -19,12 +19,19 @@ public class FacilitiesController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] FacilityParams facilityParams)
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetFacilities([FromQuery] FacilityParams facilityParams)
     {
         var facilities = await mediator.Send(new GetFacilitiesQuery(facilityParams));
 
         Response.AddPaginationHeader(facilities);
 
         return Ok(facilities);
+    }
+
+    [HttpGet("provinces")]
+    public async Task<ActionResult<IEnumerable<string>>> GetFacilityProvinces()
+    {
+        var provinces = await mediator.Send(new GetFacilityProvincesQuery());
+        return Ok(provinces);
     }
 }

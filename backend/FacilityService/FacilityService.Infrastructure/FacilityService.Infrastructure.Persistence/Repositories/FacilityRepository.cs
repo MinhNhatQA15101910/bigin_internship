@@ -133,4 +133,11 @@ public class FacilityRepository : IFacilityRepository
     {
         return _facilities.InsertManyAsync(facilities, cancellationToken: cancellationToken);
     }
+
+    public Task<List<string>> GetFacilityProvincesAsync(CancellationToken cancellationToken)
+    {
+        var filter = FilterDefinition<Facility>.Empty;
+        var distinctProvinces = _facilities.Distinct<string>("Province", filter, cancellationToken: cancellationToken);
+        return distinctProvinces.ToListAsync(cancellationToken);
+    }
 }
