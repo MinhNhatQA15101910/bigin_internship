@@ -140,4 +140,13 @@ public class FacilityRepository : IFacilityRepository
         var distinctProvinces = _facilities.Distinct<string>("Province", filter, cancellationToken: cancellationToken);
         return distinctProvinces.ToListAsync(cancellationToken);
     }
+
+    public async Task UpdateFacilityAsync(Facility facility, CancellationToken cancellationToken = default)
+    {
+        await _facilities.ReplaceOneAsync(
+            f => f.Id == facility.Id,
+            facility,
+            cancellationToken: cancellationToken
+        );
+    }
 }

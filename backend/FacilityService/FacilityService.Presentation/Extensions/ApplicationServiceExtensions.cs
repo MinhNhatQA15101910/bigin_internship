@@ -1,8 +1,10 @@
 using FacilityService.Core.Application;
 using FacilityService.Core.Application.Behaviors;
+using FacilityService.Core.Application.Interfaces;
 using FacilityService.Core.Domain.Repositories;
 using FacilityService.Infrastructure.Configuration;
 using FacilityService.Infrastructure.Persistence.Repositories;
+using FacilityService.Infrastructure.Services;
 using FacilityService.Presentation.Middlewares;
 using FluentValidation;
 using MediatR;
@@ -18,11 +20,15 @@ public static class ApplicationServiceExtensions
 
         // Options pattern
         services.Configure<FacilityDatabaseSettings>(config.GetSection(nameof(FacilityDatabaseSettings)));
+        services.Configure<CloudinarySettings>(config.GetSection(nameof(CloudinarySettings)));
 
         // Repositories
         services.AddScoped<IFacilityRepository, FacilityRepository>();
 
-        // // Middleware
+        // Services
+        services.AddScoped<IFileService, FileService>();
+
+        // Middleware
         services.AddScoped<ExceptionHandlingMiddleware>();
 
         // MediatR

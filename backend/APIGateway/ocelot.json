@@ -98,6 +98,13 @@
       "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
       "UpstreamPathTemplate": "/gateway/facilities",
       "UpstreamHttpMethod": ["Get"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/facilities",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 2000 }],
+      "UpstreamPathTemplate": "/gateway/facilities",
+      "UpstreamHttpMethod": ["Post"]
     }
   ],
   "GlobalConfiguration": {

@@ -31,7 +31,6 @@ public class GetFacilitiesHandler(
         {
             facilities = await facilityRepository.GetFacilitiesAsync(request.FacilityParams, cancellationToken);
             var serializedData = JsonConvert.SerializeObject(facilities, Formatting.Indented);
-            Console.WriteLine(serializedData);
             await cache.SetStringAsync(cacheKey, serializedData, new DistributedCacheEntryOptions
             {
                 SlidingExpiration = TimeSpan.FromMinutes(5)

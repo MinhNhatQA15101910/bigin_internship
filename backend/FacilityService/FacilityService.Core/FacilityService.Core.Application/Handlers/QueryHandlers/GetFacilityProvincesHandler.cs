@@ -26,7 +26,6 @@ public class GetFacilityProvincesHandler(
         {
             provinces = await facilityRepository.GetFacilityProvincesAsync(cancellationToken);
             var serializedData = JsonConvert.SerializeObject(provinces, Formatting.Indented);
-            Console.WriteLine(serializedData);
             await cache.SetStringAsync(cacheKey, serializedData, new DistributedCacheEntryOptions
             {
                 SlidingExpiration = TimeSpan.FromMinutes(5)

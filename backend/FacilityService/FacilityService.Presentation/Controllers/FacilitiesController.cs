@@ -1,6 +1,9 @@
+using FacilityService.Core.Application.Commands;
+using FacilityService.Core.Application.DTOs;
 using FacilityService.Core.Application.Queries;
 using FacilityService.Presentation.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.DTOs;
 using SharedKernel.Params;
@@ -33,5 +36,18 @@ public class FacilitiesController(IMediator mediator) : ControllerBase
     {
         var provinces = await mediator.Send(new GetFacilityProvincesQuery());
         return Ok(provinces);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<FacilityDto>> RegisterFacility([FromForm] RegisterFacilityDto registerFacilityDto)
+    {
+        registerFacilityDto.UserId = User.GetUserId();
+
+        var facility = await mediator.Send(new RegisterFacilityCommand(registerFacilityDto));
+        return CreatedAtAction(
+            nameof(GetFacility),
+            new { id = facility.Id },
+            facility
+        );
     }
 }

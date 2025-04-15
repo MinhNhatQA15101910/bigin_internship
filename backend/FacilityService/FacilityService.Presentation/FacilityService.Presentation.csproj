@@ -10,11 +10,13 @@
     <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
     <ProjectReference Include="..\FacilityService.Core\FacilityService.Core.Application\FacilityService.Core.Application.csproj" />
     <ProjectReference Include="..\FacilityService.Infrastructure\FacilityService.Infrastructure.Persistence\FacilityService.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\FacilityService.Infrastructure\FacilityService.Infrastructure.Services\FacilityService.Infrastructure.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
   </ItemGroup>
 
