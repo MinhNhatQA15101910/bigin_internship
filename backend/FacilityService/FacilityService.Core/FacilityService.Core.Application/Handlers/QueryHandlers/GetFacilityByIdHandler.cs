@@ -1,8 +1,8 @@
-using System.Text.Json;
 using AutoMapper;
 using FacilityService.Core.Application.Queries;
 using FacilityService.Core.Domain.Repositories;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using SharedKernel.DTOs;
 using SharedKernel.Exceptions;
 
@@ -22,7 +22,7 @@ public class GetFacilityByIdHandler(
         var cachedData = await cache.GetStringAsync(cacheKey, token: cancellationToken);
         if (!string.IsNullOrEmpty(cachedData))
         {
-            facilityDto = JsonSerializer.Deserialize<FacilityDto>(cachedData) ?? new FacilityDto();
+            facilityDto = JsonConvert.DeserializeObject<FacilityDto>(cachedData) ?? new FacilityDto();
         }
         else
         {
@@ -31,7 +31,7 @@ public class GetFacilityByIdHandler(
 
             facilityDto = mapper.Map<FacilityDto>(facility);
 
-            var serializedData = JsonSerializer.Serialize(facilityDto);
+            var serializedData = JsonConvert.SerializeObject(facilityDto);
             await cache.SetStringAsync(cacheKey, serializedData, new DistributedCacheEntryOptions
             {
                 SlidingExpiration = TimeSpan.FromMinutes(5)

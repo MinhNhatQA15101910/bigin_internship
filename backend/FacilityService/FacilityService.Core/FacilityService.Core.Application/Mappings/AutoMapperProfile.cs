@@ -9,9 +9,9 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<Active, ActiveDto>();
+        CreateMap<Active, ActiveDto>().ReverseMap();
         CreateMap<Location, LocationDto>();
-        CreateMap<TimePeriod, TimePeriodDto>();
+        CreateMap<TimePeriod, TimePeriodDto>().ReverseMap();
         CreateMap<FacilityPhoto, PhotoDto>();
         CreateMap<Photo, PhotoDto>();
         CreateMap<ManagerInfo, ManagerInfoDto>();

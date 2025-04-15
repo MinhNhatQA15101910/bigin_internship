@@ -1,8 +1,8 @@
-using System.Text.Json;
 using AuthService.Core.Application.Queries;
 using AuthService.Core.Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using SharedKernel;
 using SharedKernel.DTOs;
 using SharedKernel.Exceptions;
@@ -20,13 +20,16 @@ public class GetUsersHandler(IUserRepository userRepository, IDistributedCache c
         var cachedData = await cache.GetStringAsync(cacheKey, cancellationToken);
         if (!string.IsNullOrEmpty(cachedData))
         {
-            users = JsonSerializer.Deserialize<PagedList<UserDto>>(cachedData)
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new PagedListConverter<UserDto>());
+
+            users = JsonConvert.DeserializeObject<PagedList<UserDto>>(cachedData, settings)
                 ?? throw new BadRequestException($"Failed to deserialize cached data: {cacheKey}");
         }
         else
         {
             users = await userRepository.GetUsersAsync(request.UserParams);
-            var serializedData = JsonSerializer.Serialize(users);
+            var serializedData = JsonConvert.SerializeObject(users);
             await cache.SetStringAsync(cacheKey, serializedData, new DistributedCacheEntryOptions
             {
                 SlidingExpiration = TimeSpan.FromMinutes(5)

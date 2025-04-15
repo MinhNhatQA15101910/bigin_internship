@@ -50,4 +50,11 @@ public class FacilitiesController(IMediator mediator) : ControllerBase
             facility
         );
     }
+
+    [HttpPut("update-active/{id:length(24)}")]
+    public async Task<IActionResult> UpdateActive(string id, ActiveDto activeDto)
+    {
+        await mediator.Send(new UpdateActiveCommand(id, User.GetUserId(), activeDto));
+        return NoContent();
+    }
 }
