@@ -34,14 +34,7 @@ const previewUrls = ref([])
 
 const handleUpload = (e) => {
   const files = Array.from(e.target.files)
-
-  // Preview URLs
   previewUrls.value = files.map((file) => URL.createObjectURL(file))
-
-  // Emit actual File(s)
   emit('update', props.single ? [files[0]] : files)
-
-  // Clear file input value to allow re-upload of same file
-  e.target.value = ''
 }
 </script>
