@@ -3,5 +3,5 @@ import FacilityListings from '../components/FacilityListings.vue'
 </script>
 
 <template>
-  <FacilityListings />
+  <FacilityListings showPagination />
 </template>

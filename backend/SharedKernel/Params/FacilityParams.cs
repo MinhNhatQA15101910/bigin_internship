@@ -10,5 +10,5 @@ public class FacilityParams : PaginationParams
     public decimal MinPrice { get; set; } = decimal.MinValue;
     public decimal MaxPrice { get; set; } = decimal.MaxValue;
     public string OrderBy { get; set; } = "registeredAt";
-    public string SortBy { get; set; } = "asc";
+    public string SortBy { get; set; } = "desc";
 }

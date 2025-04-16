@@ -4,6 +4,7 @@ import FacilityListing from './FacilityListing.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import { RouterLink } from 'vue-router'
 import { getFacilities } from '@/_services/facilitiesService'
+import { FacilityParams } from '@/_models/params/facilityParams'
 
 defineProps({
   limit: Number,
@@ -11,19 +12,55 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  showPagination: {
+    type: Boolean,
+    default: false,
+  },
 })
+
+var facilityParams = new FacilityParams()
 
 const state = reactive({
   facilities: [],
+  pagination: {
+    currentPage: 1,
+    itemsPerPage: 9,
+    totalItems: 0,
+    totalPages: 0,
+  },
   isLoading: true,
 })
 
-onMounted(async () => {
-  state.facilities = await getFacilities()
-  console.log(state.facilities)
+const goToPrev = () => {
+  if (state.pagination.currentPage > 1) {
+    facilityParams.pageNumber--
 
-  state.isLoading = false
+    getFacilitiesCall()
+  }
+}
+
+const goToNext = async () => {
+  if (state.pagination.currentPage < state.pagination.totalPages) {
+    facilityParams.pageNumber++
+
+    getFacilitiesCall()
+  }
+}
+
+onMounted(async () => {
+  getFacilitiesCall()
 })
+
+const getFacilitiesCall = () => {
+  state.isLoading = true
+
+  getFacilities(facilityParams).then(({ facilities, pagination }) => {
+    state.facilities = facilities
+    state.pagination = pagination
+
+    state.isLoading = false
+  })
+}
 </script>
 
 <template>
@@ -43,6 +80,31 @@ onMounted(async () => {
           :key="facility.id"
           :facility="facility"
         />
+      </div>
+
+      <div
+        v-if="showPagination && state.pagination.totalPages > 1"
+        class="flex justify-center mt-8 gap-4 items-center"
+      >
+        <button
+          @click="goToPrev"
+          :disabled="state.pagination.currentPage === 1"
+          class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-gray-300"
+        >
+          Previous
+        </button>
+
+        <span class="font-semibold text-gray-700">
+          Page {{ state.pagination.currentPage }} of {{ state.pagination.totalPages }}
+        </span>
+
+        <button
+          @click="goToNext"
+          :disabled="state.pagination.currentPage === state.pagination.totalPages"
+          class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-gray-300"
+        >
+          Next
+        </button>
       </div>
     </div>
   </section>

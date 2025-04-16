@@ -1,11 +1,14 @@
 import { errorHandler } from '@/_helpers/errorHandler'
-import { useAuthStore } from '@/stores/authStore'
+import type { FacilityParams } from '@/_models/params/facilityParams'
 import axios from 'axios'
 
-export const getFacilities = async () => {
+export const getFacilities = async (facilityParams: FacilityParams) => {
   return errorHandler(async () => {
-    const response = await axios.get('/api/facilities')
-    return response.data
+    var url = `api/facilities?pageNumber=${facilityParams.pageNumber}&pageSize=${facilityParams.pageSize}&orderBy=${facilityParams.orderBy}&sortBy=${facilityParams.sortBy}`
+
+    const response = await axios.get(url)
+    const pagination = JSON.parse(response.headers['pagination'])
+    return { facilities: response.data, pagination }
   })
 }
 
