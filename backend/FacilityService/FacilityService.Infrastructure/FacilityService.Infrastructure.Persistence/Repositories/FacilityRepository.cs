@@ -129,9 +129,9 @@ public class FacilityRepository : IFacilityRepository
             .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task InsertManyAsync(IEnumerable<Facility> facilities, CancellationToken cancellationToken = default)
+    public async Task InsertManyAsync(IEnumerable<Facility> facilities, CancellationToken cancellationToken = default)
     {
-        return _facilities.InsertManyAsync(facilities, cancellationToken: cancellationToken);
+        await _facilities.InsertManyAsync(facilities, cancellationToken: cancellationToken);
     }
 
     public Task<List<string>> GetFacilityProvincesAsync(CancellationToken cancellationToken)
