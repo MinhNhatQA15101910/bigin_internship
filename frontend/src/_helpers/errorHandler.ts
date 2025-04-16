@@ -7,6 +7,7 @@ export const errorHandler = async (method: Function): Promise<any> => {
   try {
     return await method()
   } catch (err: any) {
+    console.error('Error:', err)
     const errorResponse: Error = err.response.data
     const statusCode = errorResponse.status
     switch (statusCode) {

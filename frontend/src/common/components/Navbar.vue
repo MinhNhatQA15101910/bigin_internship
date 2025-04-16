@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
 })
 
 // Actions
-const goToProfile = () => router.push('/profile')
+const goToProfile = () => router.push('/users/me')
 const goToSettings = () => router.push('/settings')
 const logout = () => authStore.logout()
 </script>

@@ -5,6 +5,7 @@ import FacilityView from '@/facility-detail/views/FacilityView.vue'
 import FacilitiesView from '@/facility-listings/views/FacilitiesView.vue'
 import HomeView from '@/home/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import ProfileView from '@/profile/views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+    },
+    {
+      path: '/users/me',
+      name: 'user-profile',
+      component: ProfileView,
     },
     {
       path: '/:catchAll(.*)',

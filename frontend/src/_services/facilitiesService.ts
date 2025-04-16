@@ -3,10 +3,16 @@ import type { FacilityParams } from '@/_models/params/facilityParams'
 import axios from 'axios'
 
 export const getFacilities = async (facilityParams: FacilityParams) => {
+  console.log('facilityParams', facilityParams)
+
   return errorHandler(async () => {
-    var url = `api/facilities?pageNumber=${facilityParams.pageNumber}&pageSize=${facilityParams.pageSize}&orderBy=${facilityParams.orderBy}&sortBy=${facilityParams.sortBy}`
+    var url = `/api/facilities?pageNumber=${facilityParams.pageNumber}&pageSize=${facilityParams.pageSize}&orderBy=${facilityParams.orderBy}&sortBy=${facilityParams.sortBy}`
+    if (facilityParams.userId) {
+      url += `&userId=${facilityParams.userId}`
+    }
 
     const response = await axios.get(url)
+    console.log('response', response)
     const pagination = JSON.parse(response.headers['pagination'])
     return { facilities: response.data, pagination }
   })
