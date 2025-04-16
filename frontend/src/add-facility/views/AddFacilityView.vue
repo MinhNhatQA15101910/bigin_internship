@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minLength, email } from '@vuelidate/validators'
 
@@ -8,10 +8,17 @@ import TextAreaField from '@/common/components/form/TextAreaField.vue'
 import ImageUploader from '@/common/components/form/ImageUploader.vue'
 import { registerFacility } from '@/_services/facilitiesService'
 import { useAuthStore } from '@/stores/authStore'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { useToast } from 'vue-toastification'
+import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
+const router = useRouter()
+const toast = useToast()
 
 // State
+const isLoading = ref(false)
+
 const facility = reactive({
   facilityName: '',
   description: '',
@@ -55,12 +62,16 @@ const handleSubmit = async () => {
   v$.value.$touch()
 
   if (!v$.value.$invalid) {
-    console.log('Facility images', facility.facilityImages)
-    console.log('Business license images', facility.businessLicenseImages)
+    isLoading.value = true
+    
     const formData = getFormData(facility)
 
-    const newFacility = await registerFacility(formData, authStore.user.token)
-    console.log('New facility registered:', newFacility)
+    var newFacility = await registerFacility(formData, authStore.user.token)
+
+    isLoading.value = false
+
+    router.push(`/facilities/${newFacility.id}`)
+    toast.success('Facility added successfully!')
   } else {
     console.error('Form validation failed:', v$.value.$errors)
   }
@@ -98,6 +109,13 @@ const getFormData = (facility) => {
 </script>
 
 <template>
+  <div
+    v-if="isLoading"
+    class="fixed inset-0 z-50 bg-white bg-opacity-70 flex items-center justify-center"
+  >
+    <PulseLoader />
+  </div>
+
   <section class="bg-green-50 min-h-screen py-10">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
